@@ -1,0 +1,3 @@
+[submodule "Stengine/vendor/spdlog"]
+	path = Stengine/vendor/spdlog
+	url = https://github.com/gabime/spdlog

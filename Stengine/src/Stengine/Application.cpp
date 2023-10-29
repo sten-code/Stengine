@@ -1,6 +1,6 @@
 #include "Application.h"
 
-namespace sten
+namespace Sten
 {
 	Application::Application()
 	{

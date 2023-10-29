@@ -2,11 +2,14 @@
 
 #ifdef ST_PLATFORM_WINDOWS
 
-extern sten::Application* sten::CreateApplication();
+extern Sten::Application* Sten::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	sten::Application* app = sten::CreateApplication();
+	Sten::Log::Init();
+	ST_CORE_TRACE("Initialized Stengine");
+
+	Sten::Application* app = Sten::CreateApplication();
 	app->Run();
 	delete app;
 	return 0;

@@ -1,6 +1,6 @@
 #include <Stengine.h>
 
-class Sandbox : public sten::Application
+class Sandbox : public Sten::Application
 {
 public:
 	Sandbox()
@@ -14,7 +14,7 @@ public:
 	}
 };
 
-sten::Application* sten::CreateApplication()
+Sten::Application* Sten::CreateApplication()
 {
 	return new Sandbox();
 }

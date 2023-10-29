@@ -2,7 +2,7 @@
 
 #include "Core.h"
 
-namespace sten
+namespace Sten
 {
 	class STEN_API Application
 	{

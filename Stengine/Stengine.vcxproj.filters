@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Stengine">
       <UniqueIdentifier>{A2AD08EA-8E7A-63F5-B793-519DA3BF9883}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stengine\Event">
+      <UniqueIdentifier>{73603694-5F2E-2A9A-48C2-9AC0342F06FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stengine\ImGui">
+      <UniqueIdentifier>{4C547994-3822-6D9A-21B6-DDC00D2349FF}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine.h" />
     <ClInclude Include="src\Stengine\Application.h">
       <Filter>Stengine</Filter>
@@ -16,16 +37,57 @@
     <ClInclude Include="src\Stengine\EntryPoint.h">
       <Filter>Stengine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Event\ApplicationEvent.h">
+      <Filter>Stengine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Event\Event.h">
+      <Filter>Stengine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Event\KeyEvent.h">
+      <Filter>Stengine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Event\MouseEvent.h">
+      <Filter>Stengine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\ImGui\ImGuiLayer.h">
+      <Filter>Stengine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Layer.h">
+      <Filter>Stengine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\LayerStack.h">
+      <Filter>Stengine</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine\Log.h">
       <Filter>Stengine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Window.h">
+      <Filter>Stengine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Stengine\Application.cpp">
+      <Filter>Stengine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\ImGui\ImGuiLayer.cpp">
+      <Filter>Stengine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Layer.cpp">
+      <Filter>Stengine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\LayerStack.cpp">
       <Filter>Stengine</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Log.cpp">
       <Filter>Stengine</Filter>
     </ClCompile>
+    <ClCompile Include="src\stpch.cpp" />
   </ItemGroup>
 </Project>

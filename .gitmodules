@@ -1,3 +1,10 @@
 [submodule "Stengine/vendor/spdlog"]
 	path = Stengine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Stengine/vendor/GLFW"]
+	path = Stengine/vendor/GLFW
+	url = https://github.com/thecherno/glfw
+[submodule "Stengine/vendor/imgui"]
+	path = Stengine/vendor/imgui
+	url = https://github.com/thecherno/imgui
+	branch = master

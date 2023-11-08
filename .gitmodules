@@ -8,3 +8,6 @@
 	path = Stengine/vendor/imgui
 	url = https://github.com/thecherno/imgui
 	branch = master
+[submodule "Stengine/vendor/glm"]
+	path = Stengine/vendor/glm
+	url = https://github.com/g-truc/glm

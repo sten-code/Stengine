@@ -5,7 +5,7 @@
 #include "Stengine/Event/KeyEvent.h"
 #include "Stengine/Event/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Sten
 {
@@ -38,7 +38,8 @@ namespace Sten
 		m_Data.Height = props.Height;
 
 		ST_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
-
+		
+		
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
@@ -48,9 +49,10 @@ namespace Sten
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		ST_CORE_ASSERT(status, "Failed to initialize Glad.");
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -132,7 +134,7 @@ namespace Sten
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			MouseScrolledEvent event(xOffset, yOffset);
+			MouseScrolledEvent event((float)xOffset, (float)yOffset);
 			data.EventCallback(event);
 		});
 
@@ -140,7 +142,7 @@ namespace Sten
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-			MouseMovedEvent event(xPos, yPos);
+			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 		});
 	}
@@ -153,7 +155,7 @@ namespace Sten
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

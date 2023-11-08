@@ -4,7 +4,7 @@
 
 namespace Sten
 {
-	enum class EventType
+	enum class STEN_API EventType
 	{
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -13,7 +13,7 @@ namespace Sten
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
-	enum EventCategory
+	enum STEN_API EventCategory
 	{
 		None = 0,
 		EventCategoryApplication	= BIT(0),

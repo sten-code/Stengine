@@ -1,5 +1,7 @@
 #include <Stengine.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Sten::Layer
 {
 public:
@@ -9,12 +11,19 @@ public:
 
 	void OnUpdate() override
 	{
-		_info("ExampleLayer::Update");
+
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("test");
+		ImGui::Text("test text");
+		ImGui::End();
 	}
 
 	void OnEvent(Sten::Event& event) override
 	{
-		_trace("{0}", event);
+
 	}
 };
 
@@ -23,8 +32,7 @@ class Sandbox : public Sten::Application
 public:
 	Sandbox()
 	{
-		//PushLayer(new ExampleLayer());
-		PushOverlay(new Sten::ImGuiLayer());
+		PushLayer(new ExampleLayer());
 	}
 
 	~Sandbox()

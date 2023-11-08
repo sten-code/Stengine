@@ -1,18 +1,26 @@
 #pragma once
 
 #ifdef ST_PLATFORM_WINDOWS
-	#ifdef ST_BUILD_DLL
-		#define STEN_API __declspec(dllexport)
+	#if ST_DYNAMIC_LINK
+		#ifdef ST_BUILD_DLL
+			#define STEN_API __declspec(dllexport)
+		#else
+			#define STEN_API __declspec(dllimport)
+		#endif
 	#else
-		#define STEN_API __declspec(dllimport)
+		#define STEN_API
 	#endif
 #else
 	#error Stengine only supports Windows!
 #endif
 
+#ifdef ST_DEBUG
+	#define ST_ENABLE_ASSERTS
+#endif
+
 #ifdef ST_ENABLE_ASSERTS
 	#define _assert(x, ...) { if (!(x)) { _error("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define ST_CORE_ASSERT(x, ...) { if (!(x)) { ST_CORE_ASSERT("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define ST_CORE_ASSERT(x, ...) { if (!(x)) { ST_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 	#define _assert(x, ...)
 	#define ST_CORE_ASSERT(x, ...)

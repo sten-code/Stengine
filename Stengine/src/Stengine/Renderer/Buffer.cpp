@@ -11,9 +11,10 @@ namespace Sten
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			ST_CORE_ASSERT(false, "RendererAPI::None is currently not supported.");
-		case RendererAPI::OpenGL:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -25,9 +26,10 @@ namespace Sten
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			ST_CORE_ASSERT(false, "RendererAPI::None is currently not supported.");
-		case RendererAPI::OpenGL:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, size);
 		}
 

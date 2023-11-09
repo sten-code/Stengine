@@ -1,21 +1,17 @@
 #pragma once
 
+#include "Stengine/Renderer/RendererAPI.h"
+
 namespace Sten
 {
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL
-	};
-
-
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
-		inline static RendererAPI SetAPI(RendererAPI api) { s_RendererAPI = api; }
-	private:
-		static RendererAPI s_RendererAPI;
+		static void BeginScene();
+		static void EndScene();
 
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }

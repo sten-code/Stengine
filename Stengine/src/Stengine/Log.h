@@ -4,6 +4,8 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
+#include <memory>
+
 namespace Sten
 {
 	class STEN_API Log
@@ -20,11 +22,11 @@ namespace Sten
 	};
 }
 
-#define ST_CORE_TRACE(...) Sten::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define ST_CORE_INFO(...)  ::Sten::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define ST_CORE_WARN(...)  ::Sten::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define ST_CORE_ERROR(...) ::Sten::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define ST_CORE_FATAL(...) ::Sten::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define ST_CORE_TRACE(...)  ::Sten::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define ST_CORE_INFO(...)   ::Sten::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define ST_CORE_WARN(...)   ::Sten::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define ST_CORE_ERROR(...)  ::Sten::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define ST_CORE_FATAL(...)  ::Sten::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 #define _trace(...)         ::Sten::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define _info(...)          ::Sten::Log::GetClientLogger()->info(__VA_ARGS__)

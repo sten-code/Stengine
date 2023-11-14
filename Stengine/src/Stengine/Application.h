@@ -1,17 +1,12 @@
 #pragma once
-#include "stpch.h"
 
-#include "Stengine/Core.h"
+#include "Stengine/Core/Timestep.h"
 
 #include "Stengine/Event/ApplicationEvent.h"
 #include "Stengine/Event/Event.h"
 
 #include "Stengine/ImGui/ImGuiLayer.h"
 #include "Stengine/LayerStack.h"
-
-#include "Stengine/Renderer/Buffer.h"
-#include "Stengine/Renderer/Shader.h"
-#include "Stengine/Renderer/VertexArray.h"
 
 #include "Stengine/Window.h"
 
@@ -34,18 +29,12 @@ namespace Sten
 		inline static Application& Get() { return *s_Instance;  }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-
-		std::unique_ptr<Window> m_Window;
+	private:
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<VertexArray> m_SquareVA;
-		std::shared_ptr<Shader> m_Shader2;
-
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

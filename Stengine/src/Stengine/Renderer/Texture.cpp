@@ -1,15 +1,13 @@
 #include "stpch.h"
-#include "VertexArray.h"
+#include "Texture.h"
 
-#include "Platform/OpenGL/OpenGLVertexArray.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 #include "Stengine/Renderer/Renderer.h"
-#include "Stengine/Renderer/VertexArray.h"
-
 
 namespace Sten
 {
-	Ref<VertexArray> VertexArray::Create()
+	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -17,7 +15,7 @@ namespace Sten
 			ST_CORE_ASSERT(false, "RendererAPI::None is currently not supported.");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLVertexArray>();
+			return std::make_shared<OpenGLTexture2D>(path);
 		}
 
 		ST_CORE_ASSERT(false, "Unknown Renderer API");

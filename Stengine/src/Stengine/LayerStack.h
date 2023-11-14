@@ -2,6 +2,8 @@
 
 #include "Stengine/Layer.h"
 
+#include <vector>
+
 namespace Sten
 {
 	class STEN_API LayerStack

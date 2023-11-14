@@ -40,7 +40,7 @@ namespace Sten
 		uint32_t Offset;
 		bool Normalized;
 
-		BufferElement() {}
+		BufferElement() = default;
 
 		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Type(type), Name(name), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized) {}
@@ -70,7 +70,7 @@ namespace Sten
 	class BufferLayout
 	{
 	public:
-		BufferLayout() {}
+		BufferLayout() = default;
 
 		BufferLayout(std::initializer_list<BufferElement> elements)
 			: m_Elements(elements)
@@ -104,7 +104,7 @@ namespace Sten
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() {}
+		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const  = 0;
@@ -118,10 +118,10 @@ namespace Sten
 	class IndexBuffer
 	{
 	public:
-		virtual ~IndexBuffer() {}
+		virtual ~IndexBuffer() = default;
 
-		virtual void Bind() const  = 0;
-		virtual void Unbind() const  = 0;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
 		virtual uint32_t GetCount() const = 0;
 

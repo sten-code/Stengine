@@ -1,7 +1,6 @@
 #pragma once
-#include "stpch.h"
 
-#include "Stengine/Core.h"
+#include <utility>
 
 namespace Sten
 {

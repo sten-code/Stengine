@@ -1,7 +1,9 @@
 #pragma once
-#include "stpch.h"
 
+#include "Stengine/Core/Timestep.h"
 #include "Stengine/Event/Event.h"
+
+#include <string>
 
 namespace Sten
 {
@@ -13,7 +15,7 @@ namespace Sten
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

@@ -1,5 +1,5 @@
 #include "stpch.h"
-#include "Stengine/Renderer/RendererAPI.h"
+#include "RendererAPI.h"
 
 namespace Sten
 {

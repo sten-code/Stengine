@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "Stengine/vendor/GLFW/include"
 IncludeDir["Glad"] = "Stengine/vendor/Glad/include"
 IncludeDir["imgui"] = "Stengine/vendor/imgui"
 IncludeDir["glm"] = "Stengine/vendor/glm"
+IncludeDir["stb_image"] = "Stengine/vendor/stb_image"
 
 include "Stengine/vendor/GLFW"
 include "Stengine/vendor/Glad"
@@ -38,6 +39,8 @@ project "Stengine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -49,7 +52,8 @@ project "Stengine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}",
 	}
 
 	links

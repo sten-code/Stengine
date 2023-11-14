@@ -1,5 +1,5 @@
 #include "stpch.h"
-#include "Stengine/Renderer/RenderCommand.h"
+#include "RenderCommand.h"
 
 #include "Platform/OpenGL/OpenGLRendererAPI.h"
 

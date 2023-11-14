@@ -1,9 +1,9 @@
 #include "stpch.h"
 #include "Buffer.h"
 
-#include "Stengine/Renderer/Renderer.h"
-
 #include "Platform/OpenGL/OpenGLBuffer.h"
+
+#include "Stengine/Renderer/Renderer.h"
 
 namespace Sten
 {

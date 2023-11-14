@@ -8,6 +8,5 @@ namespace Sten
 
 	Layer::~Layer()
 	{
-
 	}
 }

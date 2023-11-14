@@ -1,5 +1,5 @@
 #include "stpch.h"
-#include "Platform/OpenGL/OpenGLVertexArray.h"
+#include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>
 
@@ -46,7 +46,7 @@ namespace Sten
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
 		ST_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has on layout");
 
@@ -72,7 +72,7 @@ namespace Sten
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

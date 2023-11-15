@@ -1,7 +1,7 @@
 #pragma once
 #include "stpch.h"
 
-#include "Stengine/Input.h"
+#include "Stengine/Core/Input.h"
 
 namespace Sten
 {

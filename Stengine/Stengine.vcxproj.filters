@@ -84,6 +84,9 @@
     <ClInclude Include="src\Stengine\Application.h">
       <Filter>src\Stengine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\CameraController.h">
+      <Filter>src\Stengine</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine\Core.h">
       <Filter>src\Stengine</Filter>
     </ClInclude>
@@ -1437,6 +1440,9 @@
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Application.cpp">
+      <Filter>src\Stengine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\CameraController.cpp">
       <Filter>src\Stengine</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\ImGui\ImGuiBuild.cpp">

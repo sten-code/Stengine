@@ -6,9 +6,9 @@
 #include "Stengine/Event/Event.h"
 
 #include "Stengine/ImGui/ImGuiLayer.h"
-#include "Stengine/LayerStack.h"
+#include "Stengine/Core/LayerStack.h"
 
-#include "Stengine/Window.h"
+#include "Stengine/Core/Window.h"
 
 namespace Sten
 {
@@ -29,10 +29,12 @@ namespace Sten
 		inline static Application& Get() { return *s_Instance;  }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 	private:

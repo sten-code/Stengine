@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Stengine/Core.h"
+#include "Stengine/Core/Core.h"
 
 #include <string>
 

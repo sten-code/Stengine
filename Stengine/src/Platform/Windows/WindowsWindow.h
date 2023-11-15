@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Stengine/Window.h"
+#include "Stengine/Core/Window.h"
 #include "Stengine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

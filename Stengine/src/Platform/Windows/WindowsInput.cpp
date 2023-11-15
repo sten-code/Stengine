@@ -1,7 +1,7 @@
 #include "stpch.h"
 #include "WindowsInput.h"
 
-#include "Stengine/Application.h"
+#include "Stengine/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

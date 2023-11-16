@@ -17,9 +17,17 @@ private:
 	Sten::ShaderLibrary m_ShaderLibrary;
 	Sten::OrthographicCameraController m_CameraController;
 
-	glm::vec4 m_Color = { 0.2f, 0.3f, 0.8f, 1.0f };
+	glm::vec4 m_Color = { 0.8f, 0.2f, 0.3f, 1.0f };
 	Sten::Ref<Sten::Texture2D> m_Texture;
 	Sten::Ref<Sten::VertexArray> m_VertexArray;
 
-	float m_Fps;
+	float m_Fps = 0.0f;
+
+	struct ProfileResult
+	{
+		const char* Name;
+		float Time;
+	};
+
+	std::vector<ProfileResult> m_ProfileResults;
 };

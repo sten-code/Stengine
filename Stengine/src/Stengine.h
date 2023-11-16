@@ -25,6 +25,7 @@
 
 // ----------------- Renderer -----------------
 #include "Stengine/Renderer/Renderer.h"
+#include "Stengine/Renderer/Renderer2D.h"
 #include "Stengine/Renderer/RenderCommand.h"
 #include "Stengine/Renderer/Camera.h"
 

@@ -173,6 +173,7 @@
     <ClInclude Include="src\Stengine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Stengine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Stengine\Renderer\Renderer.h" />
+    <ClInclude Include="src\Stengine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Stengine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Stengine\Renderer\Shader.h" />
     <ClInclude Include="src\Stengine\Renderer\Texture.h" />
@@ -617,6 +618,7 @@
     <ClCompile Include="src\Stengine\Renderer\Camera.cpp" />
     <ClCompile Include="src\Stengine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Stengine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Stengine\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Stengine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Stengine\Renderer\Shader.cpp" />
     <ClCompile Include="src\Stengine\Renderer\Texture.cpp" />

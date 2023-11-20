@@ -1,19 +1,21 @@
 #pragma once
 
-#ifdef ST_PLATFORM_WINDOWS
-
 extern Sten::Application* Sten::CreateApplication();
 
 int main(int argc, char** argv)
 {
+	ST_PROFILE_BEGIN_SESSION("Startup", "StengineProfile-Startup.json");
 	Sten::Log::Init();
-	ST_CORE_TRACE("Initialized Stengine");
-
 	Sten::Application* app = Sten::CreateApplication();
+	ST_PROFILE_END_SESSION();
+
+	ST_PROFILE_BEGIN_SESSION("Runtime", "StengineProfile-Runtime.json");
 	app->Run();
+	ST_PROFILE_END_SESSION();
+
+	ST_PROFILE_BEGIN_SESSION("Shutdown", "StengineProfile-Shutdown.json");
 	delete app;
+	ST_PROFILE_END_SESSION();
+
 	return 0;
 }
-#else
-	#error Stengine only supports Windows!
-#endif

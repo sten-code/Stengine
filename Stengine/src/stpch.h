@@ -16,6 +16,7 @@
 #include <unordered_set>
 
 #include "Stengine/Core/Log.h"
+#include "Stengine/Debug/Instrumentor.h"
 
 #ifdef ST_PLATFORM_WINDOWS
 	#include <Windows.h>

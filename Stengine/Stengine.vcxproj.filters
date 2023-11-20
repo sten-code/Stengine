@@ -19,6 +19,9 @@
     <Filter Include="src\Stengine\Core">
       <UniqueIdentifier>{911C0FF0-FD32-0D86-46AA-98A7B2FFDD0D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Stengine\Debug">
+      <UniqueIdentifier>{CF09FFF1-BBED-BF47-244E-BA9A1051AAC9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Stengine\Event">
       <UniqueIdentifier>{AA801AF2-9664-DB47-FFC4-D59AEBC7C5C9}</UniqueIdentifier>
     </Filter>
@@ -60,6 +63,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -72,29 +78,50 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Application.h">
-      <Filter>src\Stengine</Filter>
+    <ClInclude Include="src\Stengine\Core\Application.h">
+      <Filter>src\Stengine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\CameraController.h">
-      <Filter>src\Stengine</Filter>
+    <ClInclude Include="src\Stengine\Core\CameraController.h">
+      <Filter>src\Stengine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Core.h">
-      <Filter>src\Stengine</Filter>
+    <ClInclude Include="src\Stengine\Core\Core.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\EntryPoint.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\Input.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\KeyCodes.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\Layer.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\LayerStack.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\Log.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\MouseCodes.h">
+      <Filter>src\Stengine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Core\Timestep.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\EntryPoint.h">
-      <Filter>src\Stengine</Filter>
+    <ClInclude Include="src\Stengine\Core\Window.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Debug\Instrumentor.h">
+      <Filter>src\Stengine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Event\ApplicationEvent.h">
       <Filter>src\Stengine\Event</Filter>
@@ -111,28 +138,13 @@
     <ClInclude Include="src\Stengine\ImGui\ImGuiLayer.h">
       <Filter>src\Stengine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Input.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\KeyCodes.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\Layer.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\LayerStack.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\Log.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\MouseButtonCodes.h">
-      <Filter>src\Stengine</Filter>
-    </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Buffer.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Camera.h">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Renderer\Framebuffer.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\GraphicsContext.h">
@@ -144,10 +156,16 @@
     <ClInclude Include="src\Stengine\Renderer\Renderer.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Renderer\Renderer2D.h">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\RendererAPI.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Shader.h">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Renderer\SubTexture2D.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Texture.h">
@@ -155,9 +173,6 @@
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\VertexArray.h">
       <Filter>src\Stengine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Stengine\Window.h">
-      <Filter>src\Stengine</Filter>
     </ClInclude>
     <ClInclude Include="src\stpch.h">
       <Filter>src</Filter>
@@ -1413,12 +1428,17 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\Scene.h" />
+    <ClInclude Include="src\Stengine\Scene\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1439,11 +1459,20 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Stengine\Application.cpp">
-      <Filter>src\Stengine</Filter>
+    <ClCompile Include="src\Stengine\Core\Application.cpp">
+      <Filter>src\Stengine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Stengine\CameraController.cpp">
-      <Filter>src\Stengine</Filter>
+    <ClCompile Include="src\Stengine\Core\CameraController.cpp">
+      <Filter>src\Stengine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Core\Layer.cpp">
+      <Filter>src\Stengine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Core\LayerStack.cpp">
+      <Filter>src\Stengine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Core\Log.cpp">
+      <Filter>src\Stengine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\ImGui\ImGuiBuild.cpp">
       <Filter>src\Stengine\ImGui</Filter>
@@ -1451,19 +1480,16 @@
     <ClCompile Include="src\Stengine\ImGui\ImGuiLayer.cpp">
       <Filter>src\Stengine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Stengine\Layer.cpp">
-      <Filter>src\Stengine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Stengine\LayerStack.cpp">
-      <Filter>src\Stengine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Stengine\Log.cpp">
-      <Filter>src\Stengine</Filter>
-    </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Buffer.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Camera.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\Framebuffer.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\GraphicsContext.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\RenderCommand.cpp">
@@ -1472,10 +1498,16 @@
     <ClCompile Include="src\Stengine\Renderer\Renderer.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\Renderer2D.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\RendererAPI.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Shader.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\SubTexture2D.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Texture.cpp">
@@ -1490,5 +1522,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Scene\Scene.cpp" />
   </ItemGroup>
 </Project>

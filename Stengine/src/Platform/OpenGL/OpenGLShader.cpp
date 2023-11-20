@@ -136,6 +136,21 @@ namespace Sten
 		UploadUniformInt(name, value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		UploadUniformIntArray(name, values, count);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& name, float value)
+	{
+		UploadUniformFloat(name, value);
+	}
+
+	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value)
+	{
+		UploadUniformFloat2(name, value);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
 		UploadUniformFloat3(name, value);
@@ -155,6 +170,13 @@ namespace Sten
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		if (location >= 0)	glUniform1i(location, value);
+		else				ST_CORE_ERROR("Couldn't find uniform '{0}'.", name);
+	}
+
+	void OpenGLShader::UploadUniformIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		if (location >= 0)	glUniform1iv(location, count, values);
 		else				ST_CORE_ERROR("Couldn't find uniform '{0}'.", name);
 	}
 

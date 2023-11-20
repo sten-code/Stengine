@@ -1,0 +1,1 @@
+{"otherData": {},"traceEvents":[{"cat":"function","dur":0,"name":"void __cdecl Sandbox2D::OnDetach(void)","ph":"X","pid":0,"tid":2362683369,"ts":32468519696},{"cat":"function","dur":19471,"name":"void __cdecl Sten::WindowsWindow::Shutdown(void)","ph":"X","pid":0,"tid":2362683369,"ts":32468521173}]}

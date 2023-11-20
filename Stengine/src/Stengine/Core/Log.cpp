@@ -9,6 +9,7 @@ namespace Sten
 
 	void Log::Init()
 	{
+		ST_PROFILE_FUNCTION();
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 		s_CoreLogger = spdlog::stdout_color_mt("STENGINE");
 		s_CoreLogger->set_level(spdlog::level::trace);

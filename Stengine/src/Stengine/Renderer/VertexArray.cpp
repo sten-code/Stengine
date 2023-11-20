@@ -11,6 +11,8 @@ namespace Sten
 {
 	Ref<VertexArray> VertexArray::Create()
 	{
+		ST_PROFILE_FUNCTION();
+
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:

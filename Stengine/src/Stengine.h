@@ -2,9 +2,9 @@
 
 // For use by Stengine Applications
 
-// Core
+// ----------------- Core -----------------
 #include "Stengine/Core/Application.h"
-#include "Stengine/CameraController.h"
+#include "Stengine/Core/CameraController.h"
 #include "Stengine/Core/Layer.h"
 #include "Stengine/Core/Log.h"
 #include "Stengine/Core/Timestep.h"
@@ -12,7 +12,8 @@
 // IO
 #include "Stengine/Core/Input.h"
 #include "Stengine/Core/KeyCodes.h"
-#include "Stengine/Core/MouseButtonCodes.h"
+#include "Stengine/Core/MouseCodes.h"
+// ----------------------------------------
 
 // Layers
 #include "Stengine/ImGui/ImGuiLayer.h"
@@ -23,6 +24,10 @@
 #include "Stengine/Event/KeyEvent.h"
 #include "Stengine/Event/MouseEvent.h"
 
+// Scene
+#include "Stengine/Scene/Components.h"
+#include "Stengine/Scene/Scene.h"
+
 // ----------------- Renderer -----------------
 #include "Stengine/Renderer/Renderer.h"
 #include "Stengine/Renderer/Renderer2D.h"
@@ -31,7 +36,9 @@
 
 // Resources
 #include "Stengine/Renderer/Buffer.h"
+#include "Stengine/Renderer/Framebuffer.h"
 #include "Stengine/Renderer/Shader.h"
 #include "Stengine/Renderer/Texture.h"
+#include "Stengine/Renderer/SubTexture2D.h"
 #include "Stengine/Renderer/VertexArray.h"
 // --------------------------------------------

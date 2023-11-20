@@ -9,6 +9,8 @@ namespace Sten
 {
 	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
+		ST_PROFILE_FUNCTION();
+
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
@@ -24,6 +26,8 @@ namespace Sten
 
 	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
 	{
+		ST_PROFILE_FUNCTION();
+
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:

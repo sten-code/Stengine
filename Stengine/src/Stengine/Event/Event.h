@@ -4,7 +4,7 @@
 
 namespace Sten
 {
-	enum class STEN_API EventType
+	enum class EventType
 	{
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -13,7 +13,7 @@ namespace Sten
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
-	enum STEN_API EventCategory
+	enum EventCategory
 	{
 		None = 0,
 		EventCategoryApplication	= BIT(0),
@@ -29,10 +29,13 @@ namespace Sten
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class STEN_API Event
+	class Event
 	{
-		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
+
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -42,8 +45,6 @@ namespace Sten
 		{
 			return GetCategoryFlags() & category;
 		}
-
-		bool Handled = false;
 	};
 
 	class EventDispatcher

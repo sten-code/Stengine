@@ -1,6 +1,6 @@
 workspace "Stengine"
 	architecture "x64"
-	startproject "Sandbox"
+	startproject "Steditor"
 
 	configurations
 	{
@@ -17,10 +17,14 @@ IncludeDir["Glad"] = "Stengine/vendor/Glad/include"
 IncludeDir["imgui"] = "Stengine/vendor/imgui"
 IncludeDir["glm"] = "Stengine/vendor/glm"
 IncludeDir["stb_image"] = "Stengine/vendor/stb_image"
+IncludeDir["entt"] = "Stengine/vendor/entt/include"
 
-include "Stengine/vendor/GLFW"
-include "Stengine/vendor/Glad"
-include "Stengine/vendor/imgui"
+group "Dependencies"
+	include "Stengine/vendor/GLFW"
+	include "Stengine/vendor/Glad"
+	include "Stengine/vendor/imgui"
+
+group ""
 
 project "Stengine"
 	location "Stengine"
@@ -54,6 +58,7 @@ project "Stengine"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -110,7 +115,8 @@ project "Sandbox"
 		"Stengine/vendor/spdlog/include",
 		"Stengine/src",
 		"Stengine/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
@@ -126,6 +132,59 @@ project "Sandbox"
 			"ST_PLATFORM_WINDOWS"
 		}
 		
+	filter "configurations:Debug"
+		defines "ST_DEBUG"
+		runtime "Debug"
+		symbols "On"
+		
+	filter "configurations:Release"
+		defines "ST_RELEASE"
+		runtime "Release"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "ST_DIST"
+		runtime "Release"
+		optimize "On"
+
+project "Steditor"
+	location "Steditor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Stengine/vendor/spdlog/include",
+		"Stengine/src",
+		"Stengine/vendor",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
+	}
+
+	links
+	{
+		"Stengine"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"ST_PLATFORM_WINDOWS"
+		}
+
 	filter "configurations:Debug"
 		defines "ST_DEBUG"
 		runtime "Debug"

@@ -11,6 +11,8 @@ namespace Sten
 {
 	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexPath, const std::string& fragmentPath)
 	{
+		ST_PROFILE_FUNCTION();
+
 		std::string vertexSrc = ReadFile(vertexPath);
 		std::string fragmentSrc = ReadFile(fragmentPath);
 		return CreateFromSource(name, vertexSrc, fragmentSrc);
@@ -18,6 +20,8 @@ namespace Sten
 
 	Ref<Shader> Shader::CreateFromSource(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
+		ST_PROFILE_FUNCTION();
+
 		Ref<Shader> shader = nullptr;
 		switch (Renderer::GetAPI())
 		{

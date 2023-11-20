@@ -10,22 +10,27 @@
 
 #include "Stengine/Core/Window.h"
 
+int main(int argc, char** argv);
+
 namespace Sten
 {
-	class STEN_API Application
+	class Application
 	{
 	public:
-		Application();
+		Application(const WindowProps& props = WindowProps());
 		virtual ~Application();
-
-		void Run();
 
 		void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		void Run();
+		void Close() { m_Running = false; }
+
 		inline Window& GetWindow() { return *m_Window; }
+		inline ImGuiLayer* GetImGuiLayer() const { return m_ImGuiLayer; }
+
 		inline static Application& Get() { return *s_Instance;  }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
@@ -39,6 +44,7 @@ namespace Sten
 		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	Application* CreateApplication();

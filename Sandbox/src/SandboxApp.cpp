@@ -7,21 +7,20 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
 
-class Sandbox : public Sten::Application
+class Steditor : public Sten::Application
 {
 public:
-	Sandbox()
+	Steditor()
 	{
 		PushLayer(new Sandbox2D());
 	}
 
-	~Sandbox()
+	~Steditor()
 	{
-
 	}
 };
 
 Sten::Application* Sten::CreateApplication()
 {
-	return new Sandbox();
+	return new Steditor();
 }

@@ -8,7 +8,7 @@
 
 namespace Sten
 {
-	class STEN_API Log
+	class Log
 	{
 	public:
 		static void Init();
@@ -22,14 +22,14 @@ namespace Sten
 	};
 }
 
-#define ST_CORE_TRACE(...)  ::Sten::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define ST_CORE_INFO(...)   ::Sten::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define ST_CORE_WARN(...)   ::Sten::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define ST_CORE_ERROR(...)  ::Sten::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define ST_CORE_FATAL(...)  ::Sten::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define ST_CORE_TRACE(...)     ::Sten::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define ST_CORE_INFO(...)      ::Sten::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define ST_CORE_WARN(...)      ::Sten::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define ST_CORE_ERROR(...)     ::Sten::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define ST_CORE_CRITICAL(...)  ::Sten::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
-#define _trace(...)         ::Sten::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define _info(...)          ::Sten::Log::GetClientLogger()->info(__VA_ARGS__)
-#define _warn(...)          ::Sten::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define _error(...)         ::Sten::Log::GetClientLogger()->error(__VA_ARGS__)
-#define _fatal(...)         ::Sten::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define ST_TRACE(...)		   ::Sten::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define ST_INFO(...)		   ::Sten::Log::GetClientLogger()->info(__VA_ARGS__)
+#define ST_WARN(...)		   ::Sten::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define ST_ERROR(...)		   ::Sten::Log::GetClientLogger()->error(__VA_ARGS__)
+#define ST_CRITICAL(...)	   ::Sten::Log::GetClientLogger()->critical(__VA_ARGS__)

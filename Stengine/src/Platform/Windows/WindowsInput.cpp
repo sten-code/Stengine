@@ -1,5 +1,5 @@
 #include "stpch.h"
-#include "WindowsInput.h"
+#include "Stengine/Core/Input.h"
 
 #include "Stengine/Core/Application.h"
 
@@ -7,39 +7,25 @@
 
 namespace Sten
 {
-    Input* Input::s_Instance = new WindowsInput();
-
-    bool WindowsInput::IsKeyPressedImpl(int keycode)
+    bool Input::IsKeyPressed(KeyCode keycode)
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        int state = glfwGetKey(window, keycode);
+        int state = glfwGetKey(window, static_cast<uint32_t>(keycode));
         return state == GLFW_PRESS || state == GLFW_REPEAT;
     }
 
-    bool WindowsInput::IsMouseButtonPressedImpl(int button)
+    bool Input::IsMouseButtonPressed(MouseCode button)
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-        int state = glfwGetMouseButton(window, button);
+        int state = glfwGetMouseButton(window, static_cast<uint32_t>(button));
         return state == GLFW_PRESS;
     }
 
-    std::pair<float, float> WindowsInput::GetMousePositionImpl()
+    glm::vec2 Input::GetMousePosition()
     {
         GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
         double xPos, yPos;
         glfwGetCursorPos(window, &xPos, &yPos);
         return { xPos, yPos };
-    }
-
-    float WindowsInput::GetMouseXImpl()
-    {
-        auto [x, y] = GetMousePositionImpl();
-        return x;
-    }
-
-    float WindowsInput::GetMouseYImpl()
-    {
-        auto [x, y] = GetMousePositionImpl();
-        return y;
     }
 }

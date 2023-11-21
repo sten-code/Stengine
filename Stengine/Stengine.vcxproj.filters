@@ -1430,6 +1430,9 @@
     </ClInclude>
     <ClInclude Include="src\Stengine\Scene\Scene.h" />
     <ClInclude Include="src\Stengine\Scene\Components.h" />
+    <ClInclude Include="src\Stengine\Scene\Entity.h" />
+    <ClInclude Include="src\Stengine\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Stengine\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1523,5 +1526,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Scene\Scene.cpp" />
+    <ClCompile Include="src\Stengine\Scene\Entity.cpp" />
+    <ClCompile Include="src\Stengine\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

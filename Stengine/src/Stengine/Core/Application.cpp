@@ -17,7 +17,7 @@ namespace Sten
 		s_Instance = this;
 
 		m_Window = Scope<Window>(Window::Create(props));
-		m_Window->SetEventCallback(ST_BIND_EVENT_FN(Application::OnEvent));
+		m_Window->SetEventCallback(ST_BIND_EVENT_FN(OnEvent));
 		m_Window->SetVSync(false);
 
 		Renderer::Init();
@@ -51,8 +51,8 @@ namespace Sten
 		ST_PROFILE_FUNCTION();
 
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(ST_BIND_EVENT_FN(Application::OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(ST_BIND_EVENT_FN(Application::OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(ST_BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(ST_BIND_EVENT_FN(OnWindowResize));
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{

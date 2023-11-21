@@ -26,7 +26,9 @@
 
 // Scene
 #include "Stengine/Scene/Components.h"
+#include "Stengine/Scene/Entity.h"
 #include "Stengine/Scene/Scene.h"
+#include "Stengine/Scene/ScriptableEntity.h"
 
 // ----------------- Renderer -----------------
 #include "Stengine/Renderer/Renderer.h"

@@ -63,12 +63,7 @@ void ParticleSystem::OnRender(Sten::OrthographicCamera& camera)
 		glm::vec4 color = glm::lerp(particle.ColorEnd, particle.ColorBegin, life);
 		float size = glm::lerp(particle.SizeEnd, particle.SizeBegin, life);
 
-		Sten::Renderer2D::DrawQuad({
-			{ particle.Position.x, particle.Position.y, 0.0f },
-			{ size, size },
-			particle.Rotation,
-			color
-		});
+		Sten::Renderer2D::DrawQuad({ particle.Position.x, particle.Position.y }, { size, size }, particle.Rotation, color);
 	}
 	Sten::Renderer2D::EndScene();
 }

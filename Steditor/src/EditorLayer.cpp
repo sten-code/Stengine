@@ -25,9 +25,38 @@ namespace Sten
 
 		m_ActiveScene = CreateRef<Scene>();
 
-		auto square = m_ActiveScene->CreateEntity();
-		m_ActiveScene->Reg().emplace<TransformComponent>(square);
-		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
+		Entity square = m_ActiveScene->CreateEntity("Green Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		class CameraController : public ScriptableEntity
+		{
+		public:
+			virtual void OnCreate() override
+			{
+			}
+
+			virtual void OnDestroy() override
+			{
+				ST_INFO("Camera Controller Destroyed");
+			}
+
+			virtual void OnUpdate(Timestep ts) override
+			{
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(KeyCode::A)) transform[3][0] -= speed * ts;
+				if (Input::IsKeyPressed(KeyCode::D)) transform[3][0] += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::W)) transform[3][1] += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::S)) transform[3][1] -= speed * ts;
+			}
+		};
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>();
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -40,21 +69,29 @@ namespace Sten
 		ST_PROFILE_FUNCTION();
 		m_Fps = 1.0f / ts;
 
+		// Resize
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		}
+
 		// Update Viewport
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
 
 		Renderer2D::ResetStats();
 		m_Framebuffer->Bind();
-		RenderCommand::SetClearColor({ 15 / 255.0f, 15 / 255.0f, 15 / 255.0f, 1.0f });
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		RenderCommand::Clear();
 
 		// Update Scene
-
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
 		m_ActiveScene->OnUpdate(ts);
 
-		Renderer2D::EndScene();
+		// End
 		m_Framebuffer->Unbind();
 	}
 
@@ -99,6 +136,8 @@ namespace Sten
 
 		// ------------------- ImGui -------------------
 
+		m_SceneHierarchyPanel.OnImGuiRender();
+
 		ImGui::Begin("Statistics");
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
@@ -109,7 +148,7 @@ namespace Sten
 		ImGui::End();
 
 		ImGui::Begin("FPS");
-		ImGui::Text("%.2f", m_Fps);
+		ImGui::LabelText("FPS", "%.2f", m_Fps);
 		ImGui::End();
 
 		// ---------------------------------------------
@@ -122,12 +161,7 @@ namespace Sten
 		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
 
 		ImVec2 viewportSize = ImGui::GetContentRegionAvail();
-		if (m_ViewportSize != *((glm::vec2*)&viewportSize))
-		{
-			m_ViewportSize = { viewportSize.x, viewportSize.y };
-			m_Framebuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
-			m_CameraController.OnResize(viewportSize.x, viewportSize.y);
-		}
+		m_ViewportSize = { viewportSize.x, viewportSize.y };
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, { m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });

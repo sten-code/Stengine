@@ -2,6 +2,8 @@
 
 #include <Stengine.h>
 
+#include "Panels/SceneHierarchyPanel.h"
+
 namespace Sten
 {
 	class EditorLayer : public Layer
@@ -24,10 +26,14 @@ namespace Sten
 		Ref<Framebuffer> m_Framebuffer;
 
 		Ref<Scene> m_ActiveScene;
+		Entity m_CameraEntity;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 
 		float m_Fps = 0.0f;
+
+		// Panels
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 }

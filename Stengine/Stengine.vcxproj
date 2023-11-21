@@ -183,7 +183,10 @@
     <ClInclude Include="src\Stengine\Renderer\Texture.h" />
     <ClInclude Include="src\Stengine\Renderer\VertexArray.h" />
     <ClInclude Include="src\Stengine\Scene\Components.h" />
+    <ClInclude Include="src\Stengine\Scene\Entity.h" />
     <ClInclude Include="src\Stengine\Scene\Scene.h" />
+    <ClInclude Include="src\Stengine\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Stengine\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\stpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
@@ -632,7 +635,9 @@
     <ClCompile Include="src\Stengine\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Stengine\Renderer\Texture.cpp" />
     <ClCompile Include="src\Stengine\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Stengine\Scene\Entity.cpp" />
     <ClCompile Include="src\Stengine\Scene\Scene.cpp" />
+    <ClCompile Include="src\Stengine\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\stpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

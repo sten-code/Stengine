@@ -27,6 +27,9 @@ namespace Sten
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
+		io.Fonts->AddFontFromFileTTF("assets/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf", 15.0f);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/fonts/OpenSans/OpenSans-Regular.ttf", 15.0f);
+
 		ImGui::StyleColorsDark();
 		
 		ImGuiStyle& style = ImGui::GetStyle();

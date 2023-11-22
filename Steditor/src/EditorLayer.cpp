@@ -121,8 +121,12 @@ namespace Sten
 		ImGui::PopStyleVar(3);
 
 		// Submit the docking space
+		ImGuiStyle& style = ImGui::GetStyle();
+		float minWinSizeX = style.WindowMinSize.x;
+		style.WindowMinSize.x = 370.0f;
 		ImGuiID dockspace_id = ImGui::GetID("DockSpace");
 		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_None);
+		style.WindowMinSize.x = minWinSizeX;
 
 		if (ImGui::BeginMenuBar())
 		{

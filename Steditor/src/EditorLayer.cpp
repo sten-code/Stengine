@@ -42,13 +42,13 @@ namespace Sten
 
 			virtual void OnUpdate(Timestep ts) override
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 
-				if (Input::IsKeyPressed(KeyCode::A)) transform[3][0] -= speed * ts;
-				if (Input::IsKeyPressed(KeyCode::D)) transform[3][0] += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::W)) transform[3][1] += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::S)) transform[3][1] -= speed * ts;
+				if (Input::IsKeyPressed(KeyCode::A)) translation.x -= speed * ts;
+				if (Input::IsKeyPressed(KeyCode::D)) translation.x += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::W)) translation.y += speed * ts;
+				if (Input::IsKeyPressed(KeyCode::S)) translation.y -= speed * ts;
 			}
 		};
 

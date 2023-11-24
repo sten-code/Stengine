@@ -23,7 +23,8 @@ project "Stengine"
 	defines
 	{
 		"_CRT_SECURE_NO_WARNINGS",
-		"GLFW_INCLUDE_NONE"
+		"GLFW_INCLUDE_NONE",
+		"YAML_CPP_STATIC_DEFINE"
 	}
 
 	includedirs
@@ -57,6 +58,8 @@ project "Stengine"
 		}
 
 	filter "system:linux"
+		systemversion "latest"
+
 		defines
 		{
 			"ST_PLATFORM_LINUX"

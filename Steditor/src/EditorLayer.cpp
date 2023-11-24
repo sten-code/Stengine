@@ -1,5 +1,7 @@
 #include "EditorLayer.h"
 
+#include "Stengine/Scene/SceneSerializer.h"
+
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui/imgui.h>
 #include <chrono>
@@ -57,6 +59,9 @@ namespace Sten
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.Serialize("assets/scene/Example.stengine");
 	}
 
 	void EditorLayer::OnDetach()

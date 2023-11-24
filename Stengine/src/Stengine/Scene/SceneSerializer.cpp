@@ -30,6 +30,8 @@ namespace Sten
 
 			out << YAML::EndMap;
 		}
+
+		out << YAML::EndMap;
 	}
 
 	void SceneSerializer::Serialize(const std::string& filePath)
@@ -60,6 +62,7 @@ namespace Sten
 
 	void SceneSerializer::Deserialize(const std::string& filePath)
 	{
+
 	}
 
 	void SceneSerializer::DeserializeRuntime(const std::string& filePath)

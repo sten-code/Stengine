@@ -18,21 +18,12 @@ project "Steditor"
 		"%{wks.location}/Stengine/vendor/spdlog/include",
 		"%{wks.location}/Stengine/src",
 		"%{wks.location}/Stengine/vendor",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
+		"%{IncludeDir.entt}"
 	}
 
 	links
 	{
-		"GLFW",
-		"Glad",
-		"ImGui",
-		"yaml-cpp",
 		"Stengine"
 	}
 

@@ -11,3 +11,6 @@
 [submodule "Stengine/vendor/glm"]
 	path = Stengine/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "Stengine/vendor/yaml-cpp"]
+	path = Stengine/vendor/yaml-cpp
+	url = https://github.com/thecherno/yaml-cpp

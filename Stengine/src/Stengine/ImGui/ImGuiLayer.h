@@ -23,6 +23,8 @@ namespace Sten
 
 		void BlockEvents(bool block) { m_BlockEvents = block; }
 	private:
+		void SetThemeColors();
+	private:
 		bool m_BlockEvents = true;
 		float m_Time = 0.0f;
 	};

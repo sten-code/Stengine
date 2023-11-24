@@ -27,6 +27,16 @@ namespace Sten
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
 
 		friend class Entity;
+		friend class SceneSerializer;
 		friend class SceneHierarchyPanel;
 	};
+
+	template<typename T>
+	inline void Scene::OnComponentAdded(Entity entity, T& component)
+	{
+		if constexpr (std::is_same_v<T, CameraComponent>)
+		{
+			dynamic_cast<CameraComponent&>(component).Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
+		}
+	}
 }

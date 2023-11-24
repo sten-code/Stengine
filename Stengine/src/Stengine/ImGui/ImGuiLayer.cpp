@@ -39,6 +39,8 @@ namespace Sten
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
+		SetThemeColors();
+
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
@@ -87,5 +89,51 @@ namespace Sten
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backup_current_context);
 		}
+	}
+
+	static ImVec4 FromRGB(int r, int g, int b)
+	{
+		return ImVec4{ r / 255.0f, g / 255.0f, b / 255.0f, 1.0f };
+	}
+
+	void ImGuiLayer::SetThemeColors()
+	{
+		auto& style = ImGui::GetStyle();
+		style.TabRounding = 4.0f;
+		style.ChildRounding = 3.0f;
+		style.FrameRounding = 3.0f;
+		style.GrabRounding = 3.0f;
+		style.WindowRounding = 3.0f;
+		style.PopupRounding = 3.0f;
+
+		style.Colors[ImGuiCol_WindowBg] = FromRGB(30, 30, 46);
+		style.Colors[ImGuiCol_MenuBarBg] = FromRGB(24, 24, 37);
+
+		// Header
+		style.Colors[ImGuiCol_Header] = FromRGB(49, 50, 68);
+		style.Colors[ImGuiCol_HeaderHovered] = FromRGB(69, 71, 90);
+		style.Colors[ImGuiCol_HeaderActive] = FromRGB(49, 50, 68);
+
+		// Buttons
+		style.Colors[ImGuiCol_Button] = FromRGB(49, 50, 68);
+		style.Colors[ImGuiCol_ButtonHovered] = FromRGB(69, 71, 90);
+		style.Colors[ImGuiCol_ButtonActive] = FromRGB(49, 50, 68);
+
+		// Frame BG
+		style.Colors[ImGuiCol_FrameBg] = FromRGB(49, 50, 68);
+		style.Colors[ImGuiCol_FrameBgHovered] = FromRGB(69, 71, 90);
+		style.Colors[ImGuiCol_FrameBgActive] = FromRGB(49, 50, 68);
+
+		// Tabs
+		style.Colors[ImGuiCol_Tab] = FromRGB(137, 180, 250);
+		style.Colors[ImGuiCol_TabHovered] = FromRGB(137, 180, 250);
+		style.Colors[ImGuiCol_TabActive] = FromRGB(243, 139, 168);
+		style.Colors[ImGuiCol_TabUnfocused] = FromRGB(235, 160, 172);
+		style.Colors[ImGuiCol_TabUnfocusedActive] = FromRGB(137, 180, 250);
+
+		// Title
+		style.Colors[ImGuiCol_TitleBg] = FromRGB(24, 24, 37);
+		style.Colors[ImGuiCol_TitleBgActive] = FromRGB(30, 30, 46);
+		style.Colors[ImGuiCol_TitleBgCollapsed] = FromRGB(127, 132, 156);
 	}
 }

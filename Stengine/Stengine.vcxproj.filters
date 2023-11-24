@@ -31,6 +31,9 @@
     <Filter Include="src\Stengine\Renderer">
       <UniqueIdentifier>{5FB06431-CB1C-202C-9410-B889003C4294}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Stengine\Scene">
+      <UniqueIdentifier>{766C0DF3-6250-CE48-CBB0-C89BB7B3B8CA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -85,6 +88,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Core\Application.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Core\Assert.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Core\CameraController.h">
@@ -173,6 +179,24 @@
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\VertexArray.h">
       <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\Components.h">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\Entity.h">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\Scene.h">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\SceneCamera.h">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\SceneSerializer.h">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Scene\ScriptableEntity.h">
+      <Filter>src\Stengine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\stpch.h">
       <Filter>src</Filter>
@@ -1428,11 +1452,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Scene\Scene.h" />
-    <ClInclude Include="src\Stengine\Scene\Components.h" />
-    <ClInclude Include="src\Stengine\Scene\Entity.h" />
-    <ClInclude Include="src\Stengine\Scene\SceneCamera.h" />
-    <ClInclude Include="src\Stengine\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1519,14 +1538,23 @@
     <ClCompile Include="src\Stengine\Renderer\VertexArray.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Scene\Entity.cpp">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Scene\Scene.cpp">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Scene\SceneCamera.cpp">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Scene\SceneSerializer.cpp">
+      <Filter>src\Stengine\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\stpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Stengine\Scene\Scene.cpp" />
-    <ClCompile Include="src\Stengine\Scene\Entity.cpp" />
-    <ClCompile Include="src\Stengine\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

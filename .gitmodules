@@ -14,3 +14,6 @@
 [submodule "Stengine/vendor/yaml-cpp"]
 	path = Stengine/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
+[submodule "Stengine/vendor/ImGuizmo"]
+	path = Stengine/vendor/ImGuizmo
+	url = https://github.com/thecherno/imguizmo

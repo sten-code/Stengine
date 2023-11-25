@@ -19,6 +19,12 @@ namespace Sten
 		virtual void OnImGuiRender() override;
 		virtual void OnEvent(Event& e) override;
 	private:
+		bool OnKeyPressed(KeyPressedEvent& e);
+
+		void NewScene();
+		void OpenScene();
+		void SaveSceneAs();
+	private:
 		OrthographicCameraController m_CameraController;
 		
 		Ref<Texture2D> m_Texture;
@@ -30,6 +36,7 @@ namespace Sten
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+		int m_GizmoType = -1;
 
 		float m_Fps = 0.0f;
 

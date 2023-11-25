@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\glm;..\Stengine\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -98,7 +98,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\glm;..\Stengine\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -120,7 +120,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\glm;..\Stengine\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

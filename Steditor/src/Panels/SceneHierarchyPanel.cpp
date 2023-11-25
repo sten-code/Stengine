@@ -17,8 +17,9 @@ namespace Sten
 	void SceneHierarchyPanel::SetContext(const Ref<Scene>& context)
 	{
 		m_Context = context;
+		m_SelectionContext = {};
 	}
-
+	
 	void SceneHierarchyPanel::OnImGuiRender()
 	{
 		ImGui::Begin("Scene Hierarchy");
@@ -90,7 +91,7 @@ namespace Sten
 
 			ImGui::EndPopup();
 		}
-
+		/*
 		if (opened)
 		{
 			ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;
@@ -98,7 +99,7 @@ namespace Sten
 			if (opened)
 				ImGui::TreePop();
 			ImGui::TreePop();
-		}
+		}*/
 
 		if (entityDeleted)
 		{
@@ -134,7 +135,7 @@ namespace Sten
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##X", &values.x, 0.1f, 0.0f, 0.0f, "%.2f");
+		ImGui::DragFloat("##X", &values.x, 0.1);
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
@@ -146,7 +147,7 @@ namespace Sten
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##Y", &values.y, 0.1f, 0.0f, 0.0f, "%.2f");
+		ImGui::DragFloat("##Y", &values.y, 0.1f);
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
@@ -158,7 +159,7 @@ namespace Sten
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##Z", &values.z, 0.1f, 0.0f, 0.0f, "%.2f");
+		ImGui::DragFloat("##Z", &values.z, 0.1f);
 		ImGui::PopItemWidth();
 		style.FrameRounding = rounding;
 

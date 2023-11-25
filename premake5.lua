@@ -25,6 +25,7 @@ IncludeDir["glm"] 		= "%{wks.location}/Stengine/vendor/glm"
 IncludeDir["stb_image"] = "%{wks.location}/Stengine/vendor/stb_image"
 IncludeDir["entt"] 		= "%{wks.location}/Stengine/vendor/entt/include"
 IncludeDir["yaml_cpp"] 	= "%{wks.location}/Stengine/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] 	= "%{wks.location}/Stengine/vendor/ImGuizmo"
 
 -- Create a solution folder inside visual studio
 group "Dependencies"

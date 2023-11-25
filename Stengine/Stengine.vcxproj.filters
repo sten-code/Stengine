@@ -34,8 +34,14 @@
     <Filter Include="src\Stengine\Scene">
       <UniqueIdentifier>{766C0DF3-6250-CE48-CBB0-C89BB7B3B8CA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Stengine\Utils">
+      <UniqueIdentifier>{B9003BF3-A5E4-FB48-0E45-F69BFA47E6CA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -198,8 +204,14 @@
     <ClInclude Include="src\Stengine\Scene\ScriptableEntity.h">
       <Filter>src\Stengine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Utils\PlatformUtils.h">
+      <Filter>src\Stengine\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="src\stpch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1478,6 +1490,9 @@
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1552,6 +1567,9 @@
     </ClCompile>
     <ClCompile Include="src\stpch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>

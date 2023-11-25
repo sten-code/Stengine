@@ -88,4 +88,17 @@ namespace Sten
 				cameraComponent.Camera.SetViewportSize(width, height);
 		}
 	}
+
+	Entity Scene::GetPrimaryCameraEntity()
+	{
+		auto view = m_Registry.view< CameraComponent>();
+		for (auto entity : view)
+		{
+			auto camera = view.get<CameraComponent>(entity);
+
+			if (camera.Primary)
+				return { entity, this };
+		}
+		return {};
+	}
 }

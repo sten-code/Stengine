@@ -5,14 +5,18 @@
 #include <chrono>
 
 Sandbox2D::Sandbox2D()
-	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
+	: Layer("Sandbox2D")
 {
+	Sten::Application::Get().GetImGuiLayer()->BlockEvents(false);
 	//Sten::Application::Get().GetWindow().SetVSync(true);
 }
 
 void Sandbox2D::OnAttach()
 {
 	ST_PROFILE_FUNCTION();
+	m_EditorCamera = Sten::EditorCamera(30.0f, 16.0f / 9.0f, 0.1f, 1000.0f);
+	m_EditorCamera.SetViewportSize(1280, 720);
+	m_EditorCamera.SetDistance(2);
 
 	m_Texture = Sten::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
@@ -39,10 +43,8 @@ void Sandbox2D::OnDetach()
 void Sandbox2D::OnUpdate(Sten::Timestep ts)
 {
 	ST_PROFILE_FUNCTION();
-
+	m_EditorCamera.OnUpdate(ts);
 	m_Fps = 1.0f / ts;
-
-	m_CameraController.OnUpdate(ts);
 
 	Sten::Renderer2D::ResetStats();
 	{
@@ -50,27 +52,20 @@ void Sandbox2D::OnUpdate(Sten::Timestep ts)
 		Sten::RenderCommand::SetClearColor({ 0.12f, 0.12f, 0.18f, 1.0f });
 		Sten::RenderCommand::Clear();
 	}
-	
+
 	{
 		ST_PROFILE_SCOPE("Renderer Particles");
 
 		if (Sten::Input::IsMouseButtonPressed(ST_MOUSE_BUTTON_LEFT))
 		{
 			glm::vec2 mouse = Sten::Input::GetMousePosition();
-			uint32_t width = Sten::Application::Get().GetWindow().GetWidth();
-			uint32_t height = Sten::Application::Get().GetWindow().GetHeight();
-
-			Sten::OrthographicCameraBounds bounds = m_CameraController.GetCamera().GetBounds();
-			glm::vec3 pos = m_CameraController.GetCamera().GetPosition();
-			mouse.x = (mouse.x / width) * bounds.GetWidth() - bounds.GetWidth() * 0.5f;
-			mouse.y = bounds.GetHeight() * 0.5f - (mouse.y / height) * bounds.GetHeight();
-			m_Particle.Position = { mouse.x + pos.x, mouse.y + pos.y };
+			m_Particle.Position = { mouse.x, mouse.y };
 			for (int i = 0; i < 5; i++)
 				m_ParticleSystem.Emit(m_Particle);
 		}
 
 		m_ParticleSystem.OnUpdate(ts);
-		m_ParticleSystem.OnRender(m_CameraController.GetCamera());
+		m_ParticleSystem.OnRender(m_EditorCamera.GetViewProjection());
 	}
 }
 
@@ -96,5 +91,15 @@ void Sandbox2D::OnImGuiRender()
 
 void Sandbox2D::OnEvent(Sten::Event& e)
 {
-	m_CameraController.OnEvent(e);
+	m_EditorCamera.OnEvent(e);
+
+	Sten::EventDispatcher dispatcher(e);
+	dispatcher.Dispatch<Sten::WindowResizeEvent>(ST_BIND_EVENT_FN(OnWindowResize));
+}
+
+bool Sandbox2D::OnWindowResize(Sten::WindowResizeEvent& e)
+{
+	ST_TRACE("{0}", e);
+	m_EditorCamera.SetViewportSize(e.GetWidth(), e.GetHeight());
+	return false;
 }

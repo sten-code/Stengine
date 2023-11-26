@@ -19,7 +19,7 @@ public:
 	ParticleSystem(uint32_t maxParticles = 100000);
 
 	void OnUpdate(Sten::Timestep ts);
-	void OnRender(Sten::OrthographicCamera& camera);
+	void OnRender(const glm::mat4& viewProjection);
 
 	void Emit(const ParticleProps& particleProps);
 private:

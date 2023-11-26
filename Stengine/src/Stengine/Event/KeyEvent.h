@@ -22,7 +22,7 @@ namespace Sten
 	class KeyPressedEvent : public KeyEvent
 	{
 	public:
-		KeyPressedEvent(KeyCode keycode, int repeatCount)
+		KeyPressedEvent(const KeyCode keycode, int repeatCount)
 			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
@@ -42,7 +42,7 @@ namespace Sten
 	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(KeyCode keycode)
+		KeyReleasedEvent(const KeyCode keycode)
 			: KeyEvent(keycode) {}
 
 		std::string ToString() const override
@@ -58,7 +58,7 @@ namespace Sten
 	class KeyTypedEvent : public KeyEvent
 	{
 	public:
-		KeyTypedEvent(KeyCode keycode)
+		KeyTypedEvent(const KeyCode keycode)
 			: KeyEvent(keycode) {}
 
 		std::string ToString() const override

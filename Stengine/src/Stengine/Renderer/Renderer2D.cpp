@@ -114,10 +114,15 @@ namespace Sten
 	{
 		ST_PROFILE_FUNCTION();
 
-		glm::mat4 viewProj = projection * glm::inverse(transform);
+		BeginScene(projection * glm::inverse(transform));
+	}
+
+	void Renderer2D::BeginScene(const glm::mat4& viewProjection)
+	{
+		ST_PROFILE_FUNCTION();
 
 		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProjection);
 
 		s_Data.QuadIndexCount = 0;
 		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
@@ -125,17 +130,18 @@ namespace Sten
 		s_Data.TextureSlotIndex = 1;
 	}
 
+	void Renderer2D::BeginScene(const EditorCamera& camera)
+	{
+		ST_PROFILE_FUNCTION();
+
+		BeginScene(camera.GetViewProjection());
+	}
+
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
 		ST_PROFILE_FUNCTION();
 
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
+		BeginScene(camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()

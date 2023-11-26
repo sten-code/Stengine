@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Stengine/Core/Timestep.h"
+#include "Stengine/Renderer/EditorCamera.h"
 
 #include <entt.hpp>
 
@@ -17,7 +18,8 @@ namespace Sten
 		Entity CreateEntity(const std::string& name);
 		void DestroyEntity(Entity entity);
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
+		void OnUpdateRuntime(Timestep ts);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
 		Entity GetPrimaryCameraEntity();

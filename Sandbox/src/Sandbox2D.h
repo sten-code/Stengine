@@ -15,8 +15,10 @@ public:
 	virtual void OnImGuiRender() override;
 	virtual void OnEvent(Sten::Event& e) override;
 private:
+	bool OnWindowResize(Sten::WindowResizeEvent& e);
+private:
+	Sten::EditorCamera m_EditorCamera;
 	Sten::ShaderLibrary m_ShaderLibrary;
-	Sten::OrthographicCameraController m_CameraController;
 	ParticleSystem m_ParticleSystem;
 
 	glm::vec4 m_Color = { 0.8f, 0.2f, 0.3f, 1.0f };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Stengine/Renderer/Camera.h"
+#include "Stengine/Renderer/EditorCamera.h"
 #include "Stengine/Renderer/Texture.h"
 #include "Stengine/Renderer/SubTexture2D.h"
 
@@ -24,6 +25,8 @@ namespace Sten
 		static void Shutdown();
 
 		static void BeginScene(const glm::mat4& projection, const glm::mat4& transform);
+		static void BeginScene(const glm::mat4& viewProjection);
+		static void BeginScene(const EditorCamera& camera);
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
 		static void Flush();

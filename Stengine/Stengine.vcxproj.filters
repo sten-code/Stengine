@@ -99,9 +99,6 @@
     <ClInclude Include="src\Stengine\Core\Assert.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Core\CameraController.h">
-      <Filter>src\Stengine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Stengine\Core\Core.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
@@ -1464,6 +1461,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Math\Math.h" />
+    <ClInclude Include="src\Stengine\Renderer\EditorCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1497,9 +1496,6 @@
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Core\Application.cpp">
-      <Filter>src\Stengine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Stengine\Core\CameraController.cpp">
       <Filter>src\Stengine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Core\Layer.cpp">
@@ -1574,5 +1570,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\EditorCamera.cpp" />
+    <ClCompile Include="src\Stengine\Math\Math.cpp" />
+    <ClCompile Include="src\Stengine\Core\Window.cpp" />
   </ItemGroup>
 </Project>

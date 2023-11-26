@@ -12,7 +12,7 @@
 namespace Sten
 {
 	EditorLayer::EditorLayer()
-		: Layer("EditorLayer"), m_CameraController(1280.0f / 720.0f)
+		: Layer("EditorLayer")
 	{
 		//Application::Get().GetWindow().SetVSync(true);
 	}
@@ -24,46 +24,15 @@ namespace Sten
 		m_Texture = Texture2D::Create("assets/textures/Checkerboard.png");
 
 		FramebufferSpecification spec;
+		spec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
 		spec.Width = 1280;
 		spec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(spec);
+		
 
 		m_ActiveScene = CreateRef<Scene>();
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-
-		/*
-		Entity square = m_ActiveScene->CreateEntity("Green Square");
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
-
-		class CameraController : public ScriptableEntity
-		{
-		public:
-			virtual void OnCreate() override
-			{
-			}
-
-			virtual void OnDestroy() override
-			{
-				ST_INFO("Camera Controller Destroyed");
-			}
-
-			virtual void OnUpdate(Timestep ts) override
-			{
-				auto& translation = GetComponent<TransformComponent>().Translation;
-				float speed = 5.0f;
-
-				if (Input::IsKeyPressed(KeyCode::A)) translation.x -= speed * ts;
-				if (Input::IsKeyPressed(KeyCode::D)) translation.x += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::W)) translation.y += speed * ts;
-				if (Input::IsKeyPressed(KeyCode::S)) translation.y -= speed * ts;
-			}
-		};
-
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
-		m_CameraEntity.AddComponent<CameraComponent>();
-		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		*/
-		
+		m_EditorCamera = EditorCamera(30.0f, 16.0f / 9.0f, 0.1f, 1000.0f);
 	}
 
 	void EditorLayer::OnDetach()
@@ -82,21 +51,35 @@ namespace Sten
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
 		// Update Viewport
 		if (m_ViewportFocused)
-			m_CameraController.OnUpdate(ts);
+			m_EditorCamera.OnUpdate(ts);
 
 		Renderer2D::ResetStats();
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		RenderCommand::Clear();
 
+		m_Framebuffer->ClearColorAttachment(1, -1);
+
 		// Update Scene
-		m_ActiveScene->OnUpdate(ts);
+		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+
+		auto [mx, my] = ImGui::GetMousePos();
+		mx -= m_ViewportBounds[0].x;
+		my -= m_ViewportBounds[0].y;
+		glm::vec2 viewportSize = m_ViewportBounds[1] - m_ViewportBounds[0];
+		my = viewportSize.y - my; // Flip the Y axis so that bottom left is 0,0
+
+		if (mx >= 0 && my >= 0 && mx < viewportSize.x && my < viewportSize.y)
+		{
+			int pixelData = m_Framebuffer->ReadPixel(1, (int)mx, (int)my);
+			ST_CORE_TRACE("{0}", pixelData);
+		}
 
 		// End
 		m_Framebuffer->Unbind();
@@ -167,6 +150,7 @@ namespace Sten
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0.0f, 0.0f });
 		ImGui::Begin("Viewport");
+		auto viewportOffset = ImGui::GetCursorPos();
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
@@ -178,6 +162,15 @@ namespace Sten
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image(reinterpret_cast<void*>(textureID), { m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		
+		ImVec2 windowSize = ImGui::GetWindowSize();
+		ImVec2 minBound = ImGui::GetWindowPos();
+		minBound.x += viewportOffset.x;
+		minBound.y += viewportOffset.y;
+
+		ImVec2 maxBound = { minBound.x + windowSize.x, minBound.y + windowSize.y };
+		m_ViewportBounds[0] = { minBound.x, minBound.y };
+		m_ViewportBounds[1] = { maxBound.x, maxBound.y };
+
 		// Gizmos
 		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
 		if (selectedEntity && m_GizmoType != -1)
@@ -187,11 +180,6 @@ namespace Sten
 			float windowWidth = (float)ImGui::GetWindowWidth();
 			float windowHeight = (float)ImGui::GetWindowHeight();
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
-
-			auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
-			auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
-			const glm::mat4& cameraProjection = camera.GetProjection();
-			glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
 
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
 			glm::mat4& transform = tc.GetTransform();
@@ -205,7 +193,7 @@ namespace Sten
 
 			float snapValues[3] = { snapValue, snapValue, snapValue };
 
-			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), 
+			ImGuizmo::Manipulate(glm::value_ptr(m_EditorCamera.GetViewMatrix()), glm::value_ptr(m_EditorCamera.GetProjection()),
 				(ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform),
 				nullptr, snap ? snapValues : nullptr);
 
@@ -232,7 +220,7 @@ namespace Sten
 
 	void EditorLayer::OnEvent(Event& e)
 	{
-		m_CameraController.OnEvent(e);
+		m_EditorCamera.OnEvent(e);
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(ST_BIND_EVENT_FN(OnKeyPressed));
@@ -243,23 +231,23 @@ namespace Sten
 		if (e.GetRepeatCount() > 0)
 			return false;
 
-		bool control = Input::IsKeyPressed(KeyCode::LeftControl) || Input::IsKeyPressed(KeyCode::RightControl);
-		bool shift = Input::IsKeyPressed(KeyCode::LeftShift) || Input::IsKeyPressed(KeyCode::RightShift);
+		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
 		switch (e.GetKeyCode())
 		{
-			case KeyCode::N:
+			case Key::N:
 			{
 				if (control)
 					NewScene();
 				break;
 			}
-			case KeyCode::O:
+			case Key::O:
 			{
 				if (control)
 					OpenScene();
 				break;
 			}
-			case KeyCode::S:
+			case Key::S:
 			{
 				if (control && shift) // TODO: Fix bug where no keypressed events happen when holding control and shift at the same time
 					SaveSceneAs();
@@ -267,16 +255,16 @@ namespace Sten
 			}
 
 			// Gizmos
-			case KeyCode::Q:
+			case Key::Q:
 				m_GizmoType = -1;
 				break;
-			case KeyCode::W:
+			case Key::W:
 				m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
 				break;
-			case KeyCode::E:
+			case Key::E:
 				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 				break;
-			case KeyCode::R:
+			case Key::R:
 				m_GizmoType = ImGuizmo::OPERATION::SCALE;
 				break;
 		}

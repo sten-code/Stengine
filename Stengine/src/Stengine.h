@@ -4,7 +4,6 @@
 
 // ----------------- Core -----------------
 #include "Stengine/Core/Application.h"
-#include "Stengine/Core/CameraController.h"
 #include "Stengine/Core/Layer.h"
 #include "Stengine/Core/Log.h"
 #include "Stengine/Core/Timestep.h"
@@ -35,6 +34,7 @@
 #include "Stengine/Renderer/Renderer2D.h"
 #include "Stengine/Renderer/RenderCommand.h"
 #include "Stengine/Renderer/Camera.h"
+#include "Stengine/Renderer/EditorCamera.h"
 
 // Resources
 #include "Stengine/Renderer/Buffer.h"

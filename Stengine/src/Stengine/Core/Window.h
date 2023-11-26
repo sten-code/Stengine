@@ -1,7 +1,8 @@
 #pragma once
-#include "stpch.h"
 
 #include "Stengine/Event/Event.h"
+
+#include <string>
 
 namespace Sten
 {

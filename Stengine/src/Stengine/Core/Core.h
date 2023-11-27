@@ -3,7 +3,7 @@
 #ifdef ST_DEBUG
 	// ------------- Settings --------------
 	#define ST_ENABLE_ASSERTS
-	#define ST_PROFILE
+	//#define ST_PROFILE
 
 	// ------------ Debug break ------------
 	#if defined(ST_PLATFORM_WINDOWS)

@@ -2,3 +2,6 @@
 bin/
 bin-int/
 /packages/Microsoft.Windows.CppWinRT.2.0.220531.1
+Steditor/StengineProfile-Startup.json
+Steditor/StengineProfile-Runtime.json
+Steditor/StengineProfile-Shutdown.json

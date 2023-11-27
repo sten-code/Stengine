@@ -18,6 +18,9 @@ namespace Sten
 		glm::vec2 TexCoord;
 		float TexIndex;
 		float TilingFactor;
+
+		// Editor-Only
+		int EntityID = -1;
 	};
 
 	struct Renderer2DData
@@ -54,11 +57,12 @@ namespace Sten
 
 		s_Data.QuadVertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 		s_Data.QuadVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position" },
-			{ ShaderDataType::Float4, "a_Color" },
-			{ ShaderDataType::Float2, "a_TexCoord" },
-			{ ShaderDataType::Float, "a_TexIndex" },
-			{ ShaderDataType::Float, "a_TilingFactor" },
+			{ ShaderDataType::Float3,	"a_Position" },
+			{ ShaderDataType::Float4,	"a_Color" },
+			{ ShaderDataType::Float2,	"a_TexCoord" },
+			{ ShaderDataType::Float,	"a_TexIndex" },
+			{ ShaderDataType::Float,	"a_TilingFactor" },
+			{ ShaderDataType::Int,		"a_EntityID" }
 		});
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);
 
@@ -296,6 +300,7 @@ namespace Sten
 			s_Data.QuadVertexBufferPtr->TexCoord = quad.TexCoords[i];
 			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 			s_Data.QuadVertexBufferPtr->TilingFactor = quad.TilingFactor;
+			s_Data.QuadVertexBufferPtr->EntityID = quad.EntityID;
 			s_Data.QuadVertexBufferPtr++;
 		}
 

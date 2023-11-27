@@ -21,6 +21,7 @@ namespace Sten
 		virtual void OnEvent(Event& e) override;
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);
+		bool OnMousePressed(MouseButtonPressedEvent& e);
 
 		void NewScene();
 		void OpenScene();
@@ -33,6 +34,7 @@ namespace Sten
 		Ref<Scene> m_ActiveScene;
 		Entity m_CameraEntity;
 		EditorCamera m_EditorCamera;
+		Entity m_HoveredEntity;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };

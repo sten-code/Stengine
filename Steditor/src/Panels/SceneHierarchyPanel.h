@@ -14,6 +14,7 @@ namespace Sten
 
 		void SetContext(const Ref<Scene>& context);
 		Entity GetSelectedEntity() const { return m_SelectionContext; }
+		void SetSelectedEntity(Entity entity) { m_SelectionContext = entity; }
 
 		void OnImGuiRender();
 	private:

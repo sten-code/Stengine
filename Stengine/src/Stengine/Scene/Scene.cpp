@@ -39,7 +39,7 @@ namespace Sten
 		for (auto entity : group)
 		{
 			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-			Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color);
+			Renderer2D::DrawQuad({ transform.GetTransform(), sprite.Color, nullptr, 1.0f, { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } }, (int)entity });
 		}
 
 		Renderer2D::EndScene();

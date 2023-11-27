@@ -16,6 +16,9 @@ namespace Sten
 		Ref<Texture2D> Texture = nullptr;
 		float TilingFactor = 1.0f;
 		glm::vec2 TexCoords[4] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
+
+		// Editor-Only
+		int EntityID = -1;
 	};
 
 	class Renderer2D

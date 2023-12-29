@@ -9,7 +9,8 @@ namespace Sten
 {
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const WindowProps& props)
+	Application::Application(const WindowProps& props, ApplicationCommandLineArgs args)
+		: m_CommandLineArgs(args)
 	{
 		ST_PROFILE_FUNCTION();
 

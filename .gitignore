@@ -5,3 +5,4 @@ bin-int/
 Steditor/StengineProfile-Startup.json
 Steditor/StengineProfile-Runtime.json
 Steditor/StengineProfile-Shutdown.json
+Stengine/vendor/VulkanSDK/

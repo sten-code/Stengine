@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Stengine/Core/Core.h"
-#include "Stengine/Scene/Entity.h"
-#include "Stengine/Scene/Scene.h"
+#include <Stengine.h>
 
 namespace Sten
 {

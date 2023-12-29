@@ -56,7 +56,7 @@ void Sandbox2D::OnUpdate(Sten::Timestep ts)
 	{
 		ST_PROFILE_SCOPE("Renderer Particles");
 
-		if (Sten::Input::IsMouseButtonPressed(ST_MOUSE_BUTTON_LEFT))
+		if (Sten::Input::IsMouseButtonPressed(Sten::Mouse::ButtonLeft))
 		{
 			glm::vec2 mouse = Sten::Input::GetMousePosition();
 			m_Particle.Position = { mouse.x, mouse.y };

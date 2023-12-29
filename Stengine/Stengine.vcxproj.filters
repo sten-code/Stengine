@@ -28,6 +28,9 @@
     <Filter Include="src\Stengine\ImGui">
       <UniqueIdentifier>{83745DF2-6F58-1E48-D8B8-189BC4BB08CA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Stengine\Math">
+      <UniqueIdentifier>{125D14F0-7E73-1286-C7EA-9DA73340E30D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Stengine\Renderer">
       <UniqueIdentifier>{5FB06431-CB1C-202C-9410-B889003C4294}</UniqueIdentifier>
     </Filter>
@@ -84,6 +87,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -123,6 +129,9 @@
     <ClInclude Include="src\Stengine\Core\MouseCodes.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Core\Timer.h">
+      <Filter>src\Stengine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine\Core\Timestep.h">
       <Filter>src\Stengine\Core</Filter>
     </ClInclude>
@@ -147,10 +156,16 @@
     <ClInclude Include="src\Stengine\ImGui\ImGuiLayer.h">
       <Filter>src\Stengine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Stengine\Math\Math.h">
+      <Filter>src\Stengine\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Buffer.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Camera.h">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Renderer\EditorCamera.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Framebuffer.h">
@@ -178,6 +193,9 @@
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\Texture.h">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stengine\Renderer\UniformBuffer.h">
       <Filter>src\Stengine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Renderer\VertexArray.h">
@@ -1461,8 +1479,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Stengine\Math\Math.h" />
-    <ClInclude Include="src\Stengine\Renderer\EditorCamera.h" />
+    <ClInclude Include="src\Stengine\Core\UUID.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1481,6 +1498,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1507,16 +1527,25 @@
     <ClCompile Include="src\Stengine\Core\Log.cpp">
       <Filter>src\Stengine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Core\Window.cpp">
+      <Filter>src\Stengine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\Stengine\ImGui\ImGuiBuild.cpp">
       <Filter>src\Stengine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\ImGui\ImGuiLayer.cpp">
       <Filter>src\Stengine\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Math\Math.cpp">
+      <Filter>src\Stengine\Math</Filter>
+    </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Buffer.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Camera.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\EditorCamera.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\Framebuffer.cpp">
@@ -1546,6 +1575,9 @@
     <ClCompile Include="src\Stengine\Renderer\Texture.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stengine\Renderer\UniformBuffer.cpp">
+      <Filter>src\Stengine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Stengine\Renderer\VertexArray.cpp">
       <Filter>src\Stengine\Renderer</Filter>
     </ClCompile>
@@ -1570,8 +1602,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Stengine\Renderer\EditorCamera.cpp" />
-    <ClCompile Include="src\Stengine\Math\Math.cpp" />
-    <ClCompile Include="src\Stengine\Core\Window.cpp" />
+    <ClCompile Include="src\Stengine\Core\UUID.cpp" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,8 @@
 class Steditor : public Sten::Application
 {
 public:
-	Steditor()
+	Steditor(Sten::ApplicationCommandLineArgs args)
+		: Application(Sten::WindowProps("Sandbox", 1280, 720), args)
 	{
 		PushLayer(new Sandbox2D());
 	}
@@ -20,7 +21,7 @@ public:
 	}
 };
 
-Sten::Application* Sten::CreateApplication()
+Sten::Application* Sten::CreateApplication(Sten::ApplicationCommandLineArgs args)
 {
-	return new Steditor();
+	return new Steditor(args);
 }

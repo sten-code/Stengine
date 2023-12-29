@@ -13,49 +13,34 @@ namespace Sten
 	{
 		ST_PROFILE_FUNCTION();
 
-		std::string vertexSrc = ReadFile(vertexPath);
-		std::string fragmentSrc = ReadFile(fragmentPath);
-		return CreateFromSource(name, vertexSrc, fragmentSrc);
-	}
-
-	Ref<Shader> Shader::CreateFromSource(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
-	{
-		ST_PROFILE_FUNCTION();
-
-		Ref<Shader> shader = nullptr;
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
 			ST_CORE_ASSERT(false, "RendererAPI::None is currently not supported.");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			shader = std::make_shared<OpenGLShader>(vertexSrc, fragmentSrc);
-			break;
+			return CreateRef<OpenGLShader>(name, vertexPath, fragmentPath);
 		default:
 			ST_CORE_ASSERT(false, "Unknown Renderer API");
 			return nullptr;
 		}
-
-		shader->SetName(name);
-		return shader;
 	}
 
-	std::string Shader::ReadFile(const std::string& filePath)
+	Ref<Shader> Shader::CreateFromSource(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
-		std::string content;
-		std::ifstream io(filePath, std::ios::in | std::ios::binary);
-		if (!io)
-		{
-			ST_CORE_ERROR("Couldn't find file: '{0}'", filePath);
-			return "";
-		}
+		ST_PROFILE_FUNCTION();
 
-		io.seekg(0, std::ios::end);
-		content.resize(io.tellg());
-		io.seekg(0, std::ios::beg);
-		io.read(&content[0], content.size());
-		io.close();
-		return content;
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			ST_CORE_ASSERT(false, "RendererAPI::None is currently not supported.");
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc, true);
+		default:
+			ST_CORE_ASSERT(false, "Unknown Renderer API");
+			return nullptr;
+		}
 	}
 
 	void ShaderLibrary::Add(const Ref<Shader>& shader)

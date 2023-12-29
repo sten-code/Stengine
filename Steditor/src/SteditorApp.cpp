@@ -12,8 +12,8 @@ namespace Sten
 	class Steditor : public Application
 	{
 	public:
-		Steditor()
-			: Application(WindowProps("Steditor", 1280, 720))
+		Steditor(ApplicationCommandLineArgs args)
+			: Application(WindowProps("Steditor", 1280, 720), args)
 		{
 			PushLayer(new EditorLayer());
 		}
@@ -23,8 +23,8 @@ namespace Sten
 		}
 	};
 
-	Application* CreateApplication()
+	Application* CreateApplication(ApplicationCommandLineArgs args)
 	{
-		return new Steditor();
+		return new Steditor(args);
 	}
 }

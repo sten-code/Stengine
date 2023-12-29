@@ -79,11 +79,11 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\Box2D\include;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -91,6 +91,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>..\Stengine\vendor\VulkanSDK\Lib\shaderc_sharedd.lib;..\Stengine\vendor\VulkanSDK\Lib\spirv-cross-cored.lib;..\Stengine\vendor\VulkanSDK\Lib\spirv-cross-glsld.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -98,13 +99,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\Box2D\include;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -113,6 +114,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>C:\VulkanSDK\1.2.189.0\Lib\shaderc_shared.lib;C:\VulkanSDK\1.2.189.0\Lib\spirv-cross-core.lib;C:\VulkanSDK\1.2.189.0\Lib\spirv-cross-glsl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -120,13 +122,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ST_PLATFORM_WINDOWS;ST_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Stengine\vendor\spdlog\include;..\Stengine\src;..\Stengine\vendor;..\Stengine\vendor\GLFW\include;..\Stengine\vendor\Glad\include;..\Stengine\vendor\imgui;..\Stengine\vendor\Box2D\include;..\Stengine\vendor\glm;..\Stengine\vendor\stb_image;..\Stengine\vendor\entt\include;..\Stengine\vendor\yaml-cpp\include;..\Stengine\vendor\ImGuizmo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -135,14 +137,17 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>C:\VulkanSDK\1.2.189.0\Lib\shaderc_shared.lib;C:\VulkanSDK\1.2.189.0\Lib\spirv-cross-core.lib;C:\VulkanSDK\1.2.189.0\Lib\spirv-cross-glsl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h" />
+    <ClInclude Include="src\Panels\ContentBrowserPanel.h" />
     <ClInclude Include="src\Panels\SceneHierarchyPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp" />
+    <ClCompile Include="src\Panels\ContentBrowserPanel.cpp" />
     <ClCompile Include="src\Panels\SceneHierarchyPanel.cpp" />
     <ClCompile Include="src\SteditorApp.cpp" />
   </ItemGroup>

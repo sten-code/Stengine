@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Stengine/Core/UUID.h"
+#include "Stengine/Scene/Components.h"
 #include "Stengine/Scene/Scene.h"
 
 #include <entt.hpp>
@@ -14,13 +16,13 @@ namespace Sten
 		Entity(const Entity& other) = default;
 
 		template<typename T>
-		bool HasComponent() 
-		{ 
-			return m_Scene->m_Registry.any_of<T>(m_EntityHandle); 
+		bool HasComponent()
+		{
+			return m_Scene->m_Registry.any_of<T>(m_EntityHandle);
 		}
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&&... args) 
+		T& AddComponent(Args&&... args)
 		{
 			ST_CORE_ASSERT(!HasComponent<T>(), "Entity already has that component.");
 			T& component = m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
@@ -28,20 +30,32 @@ namespace Sten
 			return component;
 		}
 
-		template<typename T>
-		T& GetComponent() 
+		template<typename T, typename... Args>
+		T& AddOrReplaceComponent(Args&&... args)
 		{
-			ST_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have that component.");
-			return m_Scene->m_Registry.get<T>(m_EntityHandle); 
+			T& component = m_Scene->m_Registry.emplace_or_replace<T>(m_EntityHandle, std::forward<Args>(args)...);
+			m_Scene->OnComponentAdded<T>(*this, component);
+			return component;
 		}
 
 		template<typename T>
-		void RemoveComponent() 
+		T& GetComponent()
 		{
 			ST_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have that component.");
-			m_Scene->m_Registry.remove<T>(m_EntityHandle); 
+			return m_Scene->m_Registry.get<T>(m_EntityHandle);
+		}
+
+		template<typename T>
+		void RemoveComponent()
+		{
+			ST_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have that component.");
+			m_Scene->m_Registry.remove<T>(m_EntityHandle);
 		}
 		
+		UUID GetUUID() { return GetComponent<IDComponent>().Id; }
+		TransformComponent GetTransform() { return GetComponent<TransformComponent>(); }
+		std::string GetName() { return GetComponent<TagComponent>().Tag; }
+
 		operator bool() const { return m_EntityHandle != entt::null; }
 		operator entt::entity() const { return m_EntityHandle; }
 		operator uint32_t() const { return (uint32_t)m_EntityHandle; }

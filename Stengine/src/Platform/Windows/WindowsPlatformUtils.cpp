@@ -1,4 +1,5 @@
 #include "stpch.h"
+#ifdef ST_PLATFORM_WINDOWS
 #include "Stengine/Utils/PlatformUtils.h"
 
 #include "Stengine/Core/Application.h"
@@ -48,3 +49,5 @@ namespace Sten
 		return std::string();
 	}
 }
+
+#endif

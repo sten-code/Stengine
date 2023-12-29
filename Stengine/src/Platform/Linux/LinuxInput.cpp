@@ -1,5 +1,5 @@
 #include "stpch.h"
-#ifdef ST_PLATFORM_WINDOWS
+#ifdef ST_PLATFORM_LINUX
 #include "Stengine/Core/Input.h"
 
 #include "Stengine/Core/Application.h"

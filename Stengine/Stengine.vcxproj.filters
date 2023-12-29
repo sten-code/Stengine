@@ -1480,6 +1480,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Stengine\Core\UUID.h" />
+    <ClInclude Include="src\Platform\Linux\LinuxWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1603,5 +1604,8 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Stengine\Core\UUID.cpp" />
+    <ClCompile Include="src\Platform\Linux\LinuxInput.cpp" />
+    <ClCompile Include="src\Platform\Linux\LinuxPlatformUtils.cpp" />
+    <ClCompile Include="src\Platform\Linux\LinuxWindow.cpp" />
   </ItemGroup>
 </Project>

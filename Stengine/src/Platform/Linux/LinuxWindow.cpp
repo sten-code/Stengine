@@ -1,6 +1,6 @@
 #include "stpch.h"
-#ifdef ST_PLATFORM_WINDOWS
-#include "WindowsWindow.h"
+#ifdef ST_PLATFORM_LINUX
+#include "LinuxWindow.h"
 
 #include "Stengine/Event/ApplicationEvent.h"
 #include "Stengine/Event/KeyEvent.h"
@@ -18,21 +18,21 @@ namespace Sten
 		ST_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	WindowsWindow::WindowsWindow(const WindowProps& props)
+	LinuxWindow::LinuxWindow(const WindowProps& props)
 	{
 		ST_PROFILE_FUNCTION();
 
 		Init(props);
 	}
 
-	WindowsWindow::~WindowsWindow()
+	LinuxWindow::~LinuxWindow()
 	{
 		ST_PROFILE_FUNCTION();
 
 		Shutdown();
 	}
 
-	void WindowsWindow::Init(const WindowProps& props)
+	void LinuxWindow::Init(const WindowProps& props)
 	{
 		ST_PROFILE_FUNCTION();
 
@@ -157,7 +157,7 @@ namespace Sten
 			});
 	}
 
-	void WindowsWindow::Shutdown()
+	void LinuxWindow::Shutdown()
 	{
 		ST_PROFILE_FUNCTION();
 
@@ -170,7 +170,7 @@ namespace Sten
 		}
 	}
 
-	void WindowsWindow::OnUpdate()
+	void LinuxWindow::OnUpdate()
 	{
 		ST_PROFILE_FUNCTION();
 
@@ -178,7 +178,7 @@ namespace Sten
 		m_Context->SwapBuffers();
 	}
 
-	void WindowsWindow::SetVSync(bool enabled)
+	void LinuxWindow::SetVSync(bool enabled)
 	{
 		ST_PROFILE_FUNCTION();
 
@@ -190,11 +190,10 @@ namespace Sten
 		m_Data.VSync = enabled;
 	}
 
-	bool WindowsWindow::IsVSync() const
+	bool LinuxWindow::IsVSync() const
 	{
 		return m_Data.VSync;
 	}
-
 }
 
 #endif

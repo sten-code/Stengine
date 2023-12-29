@@ -17,12 +17,6 @@
 [submodule "Stengine/vendor/ImGuizmo"]
 	path = Stengine/vendor/ImGuizmo
 	url = https://github.com/thecherno/imguizmo
-[submodule "Stengine/vendor/shaderc"]
-	path = Stengine/vendor/shaderc
-	url = https://github.com/google/shaderc
-[submodule "Stengine/vendor/SPIRV-Cross"]
-	path = Stengine/vendor/SPIRV-Cross
-	url = https://github.com/KhronosGroup/SPIRV-Cross
 [submodule "Stengine/vendor/Box2D"]
 	path = Stengine/vendor/Box2D
 	url = https://github.com/thecherno/box2d

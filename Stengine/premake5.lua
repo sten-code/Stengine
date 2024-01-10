@@ -73,6 +73,10 @@ project "Stengine"
 	filter "system:linux"
 		systemversion "latest"
 
+		links { "gtk-3" } -- Link against GTK3
+        buildoptions { "`pkg-config --cflags gtk+-3.0`" }
+        linkoptions { "`pkg-config --libs gtk+-3.0`" }
+
 		defines
 		{
 			"ST_PLATFORM_LINUX"

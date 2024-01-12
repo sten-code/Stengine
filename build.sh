@@ -46,7 +46,12 @@ make -j10 config=$config &&
 cd bin/$configDir-linux-x86_64/$projectName &&
 
 # Run the executable
-./$projectName &&
+if [ "$config" = "debug" ]; then
+  gf2 -ex r $projectName
+else
+  ./$projectName
+fi
+
 
 # Return to the original directory
 cd -

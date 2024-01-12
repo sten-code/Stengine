@@ -16,15 +16,15 @@ ifeq ($(config),debug)
   TARGET = $(TARGETDIR)/Sandbox
   OBJDIR = ../bin-int/Debug-linux-x86_64/Sandbox
   DEFINES += -DST_PLATFORM_LINUX -DST_DEBUG
-  INCLUDES += -I../Stengine/vendor/spdlog/include -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include
+  INCLUDES += -Isrc -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/spdlog/include -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include -I../Stengine/vendor/osdialog
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++17
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g `pkg-config --cflags gtk+-3.0`
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++17 `pkg-config --cflags gtk+-3.0`
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../bin/Debug-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Debug-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Debug-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Debug-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Debug-linux-x86_64/yaml-cpp/libyaml-cpp.a -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
-  LDDEPS += ../bin/Debug-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Debug-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Debug-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Debug-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Debug-linux-x86_64/yaml-cpp/libyaml-cpp.a
-  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64
+  LIBS += ../bin/Debug-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Debug-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Debug-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Debug-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Debug-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Debug-linux-x86_64/osdialog/libosdialog.a -lgtk-3 -lglib-2.0 -lgobject-2.0 -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
+  LDDEPS += ../bin/Debug-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Debug-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Debug-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Debug-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Debug-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Debug-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Debug-linux-x86_64/osdialog/libosdialog.a
+  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64 `pkg-config --libs gtk+-3.0`
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -45,15 +45,15 @@ ifeq ($(config),release)
   TARGET = $(TARGETDIR)/Sandbox
   OBJDIR = ../bin-int/Release-linux-x86_64/Sandbox
   DEFINES += -DST_PLATFORM_LINUX -DST_RELEASE
-  INCLUDES += -I../Stengine/vendor/spdlog/include -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include
+  INCLUDES += -Isrc -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/spdlog/include -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include -I../Stengine/vendor/osdialog
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++17
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 `pkg-config --cflags gtk+-3.0`
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++17 `pkg-config --cflags gtk+-3.0`
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../bin/Release-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Release-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Release-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Release-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Release-linux-x86_64/yaml-cpp/libyaml-cpp.a -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
-  LDDEPS += ../bin/Release-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Release-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Release-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Release-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Release-linux-x86_64/yaml-cpp/libyaml-cpp.a
-  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64 -s
+  LIBS += ../bin/Release-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Release-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Release-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Release-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Release-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Release-linux-x86_64/osdialog/libosdialog.a -lgtk-3 -lglib-2.0 -lgobject-2.0 -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
+  LDDEPS += ../bin/Release-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Release-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Release-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Release-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Release-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Release-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Release-linux-x86_64/osdialog/libosdialog.a
+  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64 -s `pkg-config --libs gtk+-3.0`
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
@@ -74,15 +74,15 @@ ifeq ($(config),dist)
   TARGET = $(TARGETDIR)/Sandbox
   OBJDIR = ../bin-int/Dist-linux-x86_64/Sandbox
   DEFINES += -DST_PLATFORM_LINUX -DST_DIST
-  INCLUDES += -I../Stengine/vendor/spdlog/include -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include
+  INCLUDES += -Isrc -I../Stengine/src -I../Stengine/vendor -I../Stengine/vendor/spdlog/include -I../Stengine/vendor/GLFW/include -I../Stengine/vendor/Glad/include -I../Stengine/vendor/imgui -I../Stengine/vendor/Box2D/include -I../Stengine/vendor/glm -I../Stengine/vendor/stb_image -I../Stengine/vendor/entt/include -I../Stengine/vendor/yaml-cpp/include -I../Stengine/vendor/ImGuizmo -I../../../vulkansdk/x86_64/include -I../Stengine/vendor/osdialog
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++17
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 `pkg-config --cflags gtk+-3.0`
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++17 `pkg-config --cflags gtk+-3.0`
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../bin/Dist-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Dist-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Dist-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Dist-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Dist-linux-x86_64/yaml-cpp/libyaml-cpp.a -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
-  LDDEPS += ../bin/Dist-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Dist-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Dist-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Dist-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Dist-linux-x86_64/yaml-cpp/libyaml-cpp.a
-  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64 -s
+  LIBS += ../bin/Dist-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Dist-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Dist-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Dist-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Dist-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Dist-linux-x86_64/osdialog/libosdialog.a -lgtk-3 -lglib-2.0 -lgobject-2.0 -lshaderc_combined -lspirv-cross-core -lspirv-cross-glsl
+  LDDEPS += ../bin/Dist-linux-x86_64/Stengine/libStengine.a ../Stengine/vendor/GLFW/bin/Dist-linux-x86_64/GLFW/libGLFW.a ../Stengine/vendor/Glad/bin/Dist-linux-x86_64/Glad/libGlad.a ../Stengine/vendor/imgui/bin/Dist-linux-x86_64/ImGui/libImGui.a ../Stengine/vendor/Box2D/bin/Dist-linux-x86_64/Box2D/libBox2D.a ../Stengine/vendor/yaml-cpp/bin/Dist-linux-x86_64/yaml-cpp/libyaml-cpp.a ../Stengine/vendor/osdialog/bin/Dist-linux-x86_64/osdialog/libosdialog.a
+  ALL_LDFLAGS += $(LDFLAGS) -L../../../vulkansdk/x86_64/lib -L/usr/lib64 -m64 -s `pkg-config --libs gtk+-3.0`
   LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef

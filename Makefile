@@ -100,7 +100,7 @@ ifneq (,$(Steditor_config))
 	@${MAKE} --no-print-directory -C Steditor -f Makefile config=$(Steditor_config)
 endif
 
-Sandbox: Stengine GLFW Glad ImGui Box2D yaml-cpp
+Sandbox: Stengine GLFW Glad ImGui Box2D yaml-cpp osdialog
 ifneq (,$(Sandbox_config))
 	@echo "==== Building Sandbox ($(Sandbox_config)) ===="
 	@${MAKE} --no-print-directory -C Sandbox -f Makefile config=$(Sandbox_config)

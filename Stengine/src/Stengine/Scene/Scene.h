@@ -9,7 +9,7 @@
 
 namespace Sten
 {
-	class Entity;
+  class Entity;
 
 	class Scene
 	{
@@ -34,8 +34,9 @@ namespace Sten
 		Entity GetPrimaryCameraEntity();
 	private:
 		template<typename T>
-		void OnComponentAdded(Entity entity, T& component);
-	private:
+	  void OnComponentAdded(Entity entity, T& component);
+  
+  private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
 
@@ -46,13 +47,4 @@ namespace Sten
 		friend class SceneHierarchyPanel;
 	};
 
-	template<typename T>
-	inline void Scene::OnComponentAdded(Entity entity, T& component)
-	{
-		if constexpr (std::is_same_v<T, CameraComponent>)
-		{
-			if (m_ViewportWidth > 0 && m_ViewportHeight > 0)
-				dynamic_cast<CameraComponent&>(component).Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
-		}
-	}
 }

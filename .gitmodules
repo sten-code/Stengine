@@ -19,4 +19,4 @@
 	url = https://github.com/thecherno/imguizmo
 [submodule "Stengine/vendor/Box2D"]
 	path = Stengine/vendor/Box2D
-	url = https://github.com/thecherno/box2d
+	url = https://github.com/thecherno/Box2D

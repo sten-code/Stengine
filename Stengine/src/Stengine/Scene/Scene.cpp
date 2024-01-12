@@ -279,4 +279,24 @@ namespace Sten
 		}
 		return {};
 	}
+		
+  template<typename T>
+  void Scene::OnComponentAdded(Entity entity, T& component)
+  {
+    if constexpr (std::is_same_v<T, CameraComponent>)
+    {
+      if (m_ViewportWidth > 0 && m_ViewportHeight > 0)
+        dynamic_cast<CameraComponent&>(component).Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
+    }
+  }
+
+  template void Scene::OnComponentAdded<BoxCollider2DComponent>(Entity entity, BoxCollider2DComponent&);
+  template void Scene::OnComponentAdded<CameraComponent>(Entity entity, CameraComponent& component);
+  template void Scene::OnComponentAdded<SpriteRendererComponent>(Entity entity, Sten::SpriteRendererComponent& component);
+  template void Scene::OnComponentAdded<CircleRendererComponent>(Entity entity, Sten::CircleRendererComponent& component);
+  template void Scene::OnComponentAdded<Rigidbody2DComponent>(Entity entity, Rigidbody2DComponent& component);
+  template void Scene::OnComponentAdded<IDComponent>(Entity entity, IDComponent& component);
+  template void Scene::OnComponentAdded<TagComponent>(Entity entity, TagComponent& component);
+  template void Scene::OnComponentAdded<TransformComponent>(Entity entity, TransformComponent& component);
+  template void Scene::OnComponentAdded<NativeScriptComponent>(Entity entity, NativeScriptComponent& component);
 }

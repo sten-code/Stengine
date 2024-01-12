@@ -1,5 +1,5 @@
-project "Steditor"
-	kind "ConsoleApp"
+project "Steditor"	
+  kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "off"
@@ -15,9 +15,11 @@ project "Steditor"
 
 	includedirs
 	{
-		"%{wks.location}/Stengine/vendor/spdlog/include",
+    "src",
 		"%{wks.location}/Stengine/src",
 		"%{wks.location}/Stengine/vendor",
+
+		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
@@ -26,60 +28,97 @@ project "Steditor"
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yaml_cpp}",
-		"%{IncludeDir.ImGuizmo}"
-	}
+		"%{IncludeDir.ImGuizmo}",
+	  "%{IncludeDir.VulkanSDK}",
+    "%{IncludeDir.osdialog}",
+  }
 
 	links
 	{
-		"Stengine"
+		"Stengine",
+		"GLFW",
+		"Glad",
+		"ImGui",
+		"Box2D",
+		"yaml-cpp",
 	}
+
+--[[ --------------------- Linux --------------------- ]]--
+
+	filter "system:linux"
+		systemversion "latest"
+		defines { "ST_PLATFORM_LINUX" }
+
+    buildoptions { "`pkg-config --cflags gtk+-3.0`" }
+    linkoptions { "`pkg-config --libs gtk+-3.0`" }
+    
+    libdirs
+    {
+      "%{VULKAN_SDK}/lib"
+    }
+
+		links
+		{
+      "gtk-3", "glib-2.0", "gobject-2.0",
+      "osdialog",
+      "shaderc_combined",
+      "spirv-cross-core",
+      "spirv-cross-glsl",
+		}
+		
+		postbuildcommands { "cp -r \"%{wks.location}/%{prj.name}/assets\" \"%{wks.location}/bin/" .. outputdir .. "/%{prj.name}/assets\"" }
+
+--[[ -------------------- Windows -------------------- ]]--
 
 	filter "system:windows"
 		systemversion "latest"
+		defines { "ST_PLATFORM_WINDOWS" }
+		
+		postbuildcommands { "xcopy \"%{wks.location}/%{prj.name}/assets\" \"%{wks.location}/bin/" .. outputdir .. "/%{prj.name}/assets\" /E /Y /I" }
 
-		defines
+	filter { "configurations:Debug", "system:windows" }
+		links
 		{
-			"ST_PLATFORM_WINDOWS"
+			"%{wks.location}/Stengine/vendor/VulkanSDK/Lib/shaderc_sharedd.lib",
+			"%{wks.location}/Stengine/vendor/VulkanSDK/Lib/spirv-cross-cored.lib",
+			"%{wks.location}/Stengine/vendor/VulkanSDK/Lib/spirv-cross-glsld.lib",
 		}
 
-	filter "system:linux"
-		defines
+		postbuildcommands
 		{
-			"ST_PLATFORM_LINUX"
+			"copy \"%{wks.location}Stengine\\vendor\\VulkanSDK\\bin\\shaderc_sharedd.dll\" \"%{wks.location}%{prj.name}\"",
+			"copy \"%{wks.location}Stengine\\vendor\\VulkanSDK\\bin\\shaderc_sharedd.dll\" \"%{wks.location}\\bin\\" .. outputdir .. "\\%{prj.name}\"",
 		}
 		
+	filter { "configurations:Release", "system:windows" }
+		links
+		{
+			"%{VULKAN_SDK}/Lib/shaderc_shared.lib",
+			"%{VULKAN_SDK}/Lib/spirv-cross-core.lib",
+			"%{VULKAN_SDK}/Lib/spirv-cross-glsl.lib",
+		}
+
+	filter { "configurations:Dist", "system:windows" }
+		links
+		{
+			"%{VULKAN_SDK}/Lib/shaderc_shared.lib",
+			"%{VULKAN_SDK}/Lib/spirv-cross-core.lib",
+			"%{VULKAN_SDK}/Lib/spirv-cross-glsl.lib",
+		}
+		
+--[[ ------------------ Configurations ------------------ ]]--
+
 	filter "configurations:Debug"
 		defines "ST_DEBUG"
 		runtime "Debug"
 		symbols "On"
 
-		links
-		{
-			"%{Library.ShaderC_Debug}",
-			"%{Library.SPIRV_Cross_Debug}",
-			"%{Library.SPIRV_Cross_GLSL_Debug}"
-		}
-		
 	filter "configurations:Release"
 		defines "ST_RELEASE"
 		runtime "Release"
 		optimize "On"
 
-		links
-		{
-			"%{Library.ShaderC_Release}",
-			"%{Library.SPIRV_Cross_Release}",
-			"%{Library.SPIRV_Cross_GLSL_Release}"
-		}
-
 	filter "configurations:Dist"
 		defines "ST_DIST"
 		runtime "Release"
 		optimize "On"
-
-		links
-		{
-			"%{Library.ShaderC_Release}",
-			"%{Library.SPIRV_Cross_Release}",
-			"%{Library.SPIRV_Cross_GLSL_Release}"
-		}

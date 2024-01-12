@@ -22,5 +22,4 @@ namespace Sten
 	private:
 		Ref<Scene> m_Scene;
 	};
-
 }

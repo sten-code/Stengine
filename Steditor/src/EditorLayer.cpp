@@ -14,7 +14,6 @@ namespace Sten
 	EditorLayer::EditorLayer()
 		: Layer("EditorLayer")
 	{
-		//Application::Get().GetWindow().SetVSync(true);
 	}
 
 	void EditorLayer::OnAttach()
@@ -22,8 +21,8 @@ namespace Sten
 		ST_PROFILE_FUNCTION();
 
 		m_Texture = Texture2D::Create("assets/textures/Checkerboard.png");
-		m_IconPlay = Texture2D::Create("resources/icons/play.png");
-		m_IconStop = Texture2D::Create("resources/icons/stop.png");
+		m_IconPlay = Texture2D::Create("assets/icons/play.png");
+		m_IconStop = Texture2D::Create("assets/icons/stop.png");
 
 		FramebufferSpecification spec;
 		spec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
@@ -184,7 +183,7 @@ namespace Sten
 		{
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
 			{
-				const wchar_t* path = (const wchar_t*)payload->Data;
+				const char* path = (const char*)payload->Data;
 				OpenScene(std::filesystem::path("assets") / std::filesystem::path(path));
 			}
 			ImGui::EndDragDropTarget();
@@ -199,7 +198,7 @@ namespace Sten
 			ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
 
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
-			glm::mat4& transform = tc.GetMatrix();
+			glm::mat4 transform = tc.GetMatrix();
 
 			// Snapping
 			bool snap = Input::IsKeyPressed(Key::LeftControl);
@@ -333,6 +332,7 @@ namespace Sten
 				m_GizmoType = ImGuizmo::OPERATION::SCALE;
 				break;
 		}
+    return false;
 	}
 
 	bool EditorLayer::OnMousePressed(MouseButtonPressedEvent& e)
